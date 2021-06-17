@@ -3,6 +3,62 @@
 " ~ Jorge Arreola
 "
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+"
+" Useful links:
+" ~ https://stackoverflow.com/a/28279006 // 
+"   > You can jump to a mark by typing '<mark>, so '. will take you to the place of the last edit, '' will take you back to where you were, and '" takes you to the position you saved the file at.
+" 
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" 
+" Plugins
+"
+"
+call plug#begin('~/.local/share/nvim/plugged')
+
+" THEMES
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'itchyny/lightline.vim'
+
+" EPLORER
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+" TOOLS
+Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
+let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint']  " list of CoC extensions needed
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-fugitive'
+
+" REACT SECTION
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'SirVer/ultisnips'
+Plug 'mlaursen/vim-react-snippets'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+
+" MISC
+Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
+Plug 'vimsence/vimsence'
+Plug 'tpope/vim-commentary'
+Plug 'luochen1990/rainbow'
+Plug 'tpope/vim-surround'
+Plug 'mattn/emmet-vim'
+
+call plug#end()
+
+
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+" 
+" General Configurations
+"
+"
 syntax on
 
 set mouse=a
@@ -24,44 +80,6 @@ set encoding=utf-8
 set showmatch
 set cursorline
 set termguicolors
-
-call plug#begin('~/.local/share/nvim/plugged')
-
-" THEMES
-Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-Plug 'itchyny/lightline.vim'
-
-" EPLORER
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-
-" TOOLS
-Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint']  " list of CoC extensions needed
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'jparise/vim-graphql'
-
-" REACT SECTION
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'SirVer/ultisnips'
-Plug 'mlaursen/vim-react-snippets'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
-" MISC
-Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-Plug 'vimsence/vimsence'
-Plug 'tpope/vim-commentary'
-Plug 'luochen1990/rainbow'
-Plug 'tpope/vim-surround'
-Plug 'mattn/emmet-vim'
-
-call plug#end()
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -92,6 +110,7 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
 " UTILS
 "
