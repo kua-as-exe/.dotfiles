@@ -1,3 +1,8 @@
+" 
+" Personal Nvim Configuration
+" ~ Jorge Arreola
+"
+
 syntax on
 
 set mouse=a
@@ -22,31 +27,34 @@ set termguicolors
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+" THEMES
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
 
+" EPLORER
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+
+" TOOLS
 Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint']  " list of CoC extensions needed
-
-
-Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-
-" these two plugins will add highlighting and indenting to JSX and TSX files.
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 
 " REACT SECTION
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'pangloss/vim-javascript'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " MISC
+Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 Plug 'vimsence/vimsence'
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
@@ -79,7 +87,7 @@ endif
 
 " For Neovim > 0.1.5 and Vim > patch 7.4.1799 - https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
 " Based on Vim patch 7.4.1770 (`guicolors` option) - https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
-" https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
+"  ~ https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
 if (has('termguicolors'))
   set termguicolors
 endif
@@ -87,6 +95,17 @@ endif
 "
 " UTILS
 "
+
+" EXPLORER
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" Start NERDTree and leave the cursor in it.
+autocmd VimEnter * NERDTree
+
+
 
 " EMMET
 " let g:user_emmet_leader_key='<Tab>'
@@ -101,7 +120,7 @@ let g:user_emmet_settings = {
 
 
 " Clear search
-" https://stackoverflow.com/a/657484
+"  ~ https://stackoverflow.com/a/657484
 :command! C let @/=""
 
 " This is from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
@@ -167,16 +186,12 @@ xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 
 
-" To exit terminal with ESC
-" https://vi.stackexchange.com/a/6966
-tnoremap <Esc> <C-\><C-n>
-
 " Toggle comment
-" https://stackoverflow.com/a/40167715
+"  ~ https://stackoverflow.com/a/40167715
 noremap <leader>' :Commentary<cr>
 
 " Move between panels
-" https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
+"  ~ https://thoughtbot.com/blog/vim-splits-move-faster-and-more-naturally
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -188,7 +203,7 @@ nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
 
 " Move lines
-" https://vim.fandom.com/wiki/Moving_lines_up_or_down
+"  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -202,8 +217,29 @@ nnoremap <A-K> yyP
 vnoremap <A-J> yp
 vnoremap <A-K> yP
 
+" Ctrl-Z to save and close file
+nnoremap <c-z> :x<CR>
+inoremap <c-z> <c-o>:x<CR>
+" nnoremap <c-Z> :q!<CR>
+" inoremap <c-Z> <c-o>:q!<CR>
+
+" TERMINAL UTILS
+
+" exit with ESC
+"  ~ https://vi.stackexchange.com/a/6966
+tnoremap <Esc> <C-\><C-n> 
+" go back to last thing with Ctrl+Z
+tnoremap <c-z> <C-\><C-n> <C-o>
+" start terminal with Alt+T
+nnoremap <A-t> :terminal<CR>
+
+"  ~ https://github.com/neovim/neovim/issues/8816#issuecomment-410512452
+if has('nvim')
+    autocmd TermOpen term://* startinsert
+endif
+
 " clipboard suppport to WSL
-" https://superuser.com/a/1557751
+"  ~ https://superuser.com/a/1557751
 
 set clipboard+=unnamedplus
 let g:clipboard = {
