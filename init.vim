@@ -8,7 +8,14 @@
 " Useful links:
 " ~ https://stackoverflow.com/a/28279006 // 
 "   > You can jump to a mark by typing '<mark>, so '. will take you to the place of the last edit, '' will take you back to where you were, and '" takes you to the position you saved the file at.
-" 
+" ~ https://dalibornasevic.com/posts/43-12-vim-tips
+"
+"   * 5. Delete in insert mode
+"   To delete a character, word or line while in Insert mode, Vim Command Line mode or Shell Command Line  we have the following shortcuts available:
+"   <C-h> " delete back one character (backspace)
+"   <C-w> " delete back one word
+"   <C-u> " delete back to start of line
+"   <C-k> " delete forward to end of line
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 " 
@@ -30,6 +37,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " TOOLS
 Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
 let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint']  " list of CoC extensions needed
+" ~ https://github.com/neoclide/coc-prettier
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'jparise/vim-graphql'
@@ -43,13 +51,22 @@ Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
-" MISC
+" MISC & UTILS
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 Plug 'vimsence/vimsence'
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
+
+Plug 'terryma/vim-multiple-cursors'
+"  normal mode / visual mode
+"  start: <C-n> start multicursor and add a virtual cursor + selection on the match
+"  next: <C-n> add a new virtual cursor + selection on the next match
+"  skip: <C-x> skip the next match
+"  prev: <C-p> remove current virtual cursor + selection and go back on previous match
+"  select all: <A-n> start multicursor and directly select all matches
+"  You can now change the virtual cursors + selection with visual mode commands. For instance: c, s, I, A work without any issues. You could also go to normal mode by pressing v and use normal commands there.
 
 call plug#end()
 
@@ -198,7 +215,7 @@ nmap <leader>h :call CocAction('diagnosticPrevious')<cr>
 nmap <leader>cc <Plug>(coc-command)
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>cp <Plug>(coc-prettier)
+nmap <leader>p :CocCommand prettier.formatFile<cr>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
