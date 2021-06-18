@@ -30,6 +30,8 @@ Plug 'itchyny/lightline.vim'
 
 " EPLORER
 Plug 'preservim/nerdtree'
+let g:NERDTreeIgnore = ['^node_modules$'] " ~ https://stackoverflow.com/questions/61467343/how-to-ignore-certain-folders-when-recursively-opening-files-in-nerdtree
+
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
