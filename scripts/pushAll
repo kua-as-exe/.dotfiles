@@ -1,0 +1,3 @@
+#!/bin/bash
+
+commitMsg=$2
