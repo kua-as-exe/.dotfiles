@@ -304,3 +304,5 @@ if executable(s:clip)
 endif
 
 nnoremap <c-G> :OpenURL https://github.com/JorgeArreolaS<cr>
+nmap E PO
+
