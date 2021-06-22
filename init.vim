@@ -1,4 +1,6 @@
 " 
+" u
+"
 " Personal Nvim Configuration
 " ~ Jorge Arreola
 "
@@ -69,8 +71,9 @@ Plug 'terryma/vim-multiple-cursors'
 "  skip: <C-x> skip the next match
 "  prev: <C-p> remove current virtual cursor + selection and go back on previous match
 "  select all: <A-n> start multicursor and directly select all matches
-"  You can now change the virtual cursors + selection with visual mode commands. For instance: c, s, I, A work without any issues. You could also go to normal mode by pressing v and use normal commands there.
-
+"  You can now change the virtual cursors + selection with visual mode
+"  commands. For instance: c, s, I, A work without any issues. You could also
+"  go to normal mode by pressing v and use normal commands there.4
 call plug#end()
 
 
@@ -90,16 +93,22 @@ set number
 set relativenumber
 set numberwidth=1
 set nowrap
+set nohlsearch
+set incsearch
 
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set scrolloff=8
 
 set ignorecase
 set encoding=utf-8
 set showmatch
 set cursorline
 set termguicolors
+set hidden
+
+let mapleader = " "
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -175,6 +184,8 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr>j pumvisible() ? "\<C-n>" : "\j"
+inoremap <expr>k pumvisible() ? "\<C-p>" : "\k"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -203,9 +214,12 @@ endfunction
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Make <CR> auto-select the first completion item and notify coc.nvim to
+" Make <CR> and <TAB> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nmap <silent> gd <Plug>(coc-definition)
@@ -258,7 +272,7 @@ vnoremap <A-K> yP
 
 " Ctrl-Z to save and close file
 nnoremap <c-z> :x<CR>
-inoremap <c-z> <c-o>:x<CR>
+" inoremap <c-z> <c-o>:x<CR>
 " nnoremap <c-Z> :q!<CR>
 " inoremap <c-Z> <c-o>:q!<CR>
 
@@ -305,4 +319,11 @@ endif
 
 nnoremap <c-G> :OpenURL https://github.com/JorgeArreolaS<cr>
 nmap E PO
+nmap <c-e> ggVGy<c-o>
+imap <c-z> <c-o>u
+nmap <c-q> :q <CR>
+
+" delete whole word with Ctrl + backspace
+inoremap <c-BS> <c-o>diw
+
 
