@@ -1,6 +1,4 @@
 " 
-" u
-"
 " Personal Nvim Configuration
 " ~ Jorge Arreola
 "
@@ -146,7 +144,7 @@ endif
 
 " EXPLORER
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
@@ -254,6 +252,11 @@ nnoremap <C-Down> <C-W><C-J>
 nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
+" Resize panels
+" nmap <silent> <Leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
+" nmap <silent> <Leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
+" nmap <silent> <Leader>* :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+" nmap <silent> <Leader>_ :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
@@ -280,7 +283,7 @@ nnoremap <c-z> :x<CR>
 
 " exit with ESC
 "  ~ https://vi.stackexchange.com/a/6966
-tnoremap <Esc> <C-\><C-n> 
+tnoremap <c-Esc> <C-\><C-n> 
 " go back to last thing with Ctrl+Z
 tnoremap <c-z> <C-\><C-n> <C-o>
 " start terminal with Alt+T
@@ -290,6 +293,13 @@ nnoremap <A-t> :terminal<CR>
 if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
+
+" Clipboard linux
+" Copy all file
+nmap <c-e> :%w !xsel -i -b <cr><cr>
+" Copy selected
+" ~ https://stackoverflow.com/a/15971506
+vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
 
 " clipboard suppport to WSL
 "  ~ https://superuser.com/a/1557751
@@ -319,11 +329,13 @@ endif
 
 nnoremap <c-G> :OpenURL https://github.com/JorgeArreolaS<cr>
 nmap E PO
-nmap <c-e> ggVGy<c-o>
+" nmap <c-e> ggVGy<c-o>
 imap <c-z> <c-o>u
 nmap <c-q> :q <CR>
 
 " delete whole word with Ctrl + backspace
 inoremap <c-BS> <c-o>diw
 
-
+" Execute programmingTemplate script in right panel
+" ~ https://github.com/JorgeArreolaS/ProgrammingToolkit
+:nmap <c-i> <c-w><c-l> i ./main.sh <cr> <c-\><c-n> <c-w><c-h>

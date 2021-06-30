@@ -1,0 +1,32 @@
+sudo apt-get install gnome-tweak-tool
+sudo apt install neovim
+sudo apt install curl
+sudo apt install git -y
+sudo apt-get install nodejs npm -y
+sudo apt-get install -y nodejs
+sudo apt install gnome-shell-extension-system-monitor
+sudo apt install gnome-shell-extensions
+sudo apt-get install chrome-gnome-shell
+sudo apt install cmatrix
+sudo apt install gnome-shell-extension-clipboard-indicator
+sudo apt-add-repository ppa:rodsmith/refind
+sudo apt install refind
+sudo apt update && sudo apt install notion-desktop
+sudo apt install htop
+sudo apt-get install flameshot
+sudo apt-get purge firefox
+sudo apt-get install emojione-picker
+sudo apt-get install gnome-tweak-tool
+sudo apt-get update
+sudo apt-get install zeal
+sudo apt install neofetch
+sudo apt update
+sudo apt install openjdk-8-jdk
+echo sudo apt install onedrive
+sudo apt list pandoc
+sudo apt install lua5.3
+sudo apt install xsel
+sudo apt-get install translate-shell -y
+sudo apt update
+sudo apt install touchegg
+sudo apt-get install gnome-sushi
