@@ -11,7 +11,6 @@ sudo apt install cmatrix
 sudo apt install gnome-shell-extension-clipboard-indicator
 sudo apt-add-repository ppa:rodsmith/refind
 sudo apt install refind
-sudo apt update && sudo apt install notion-desktop
 sudo apt install htop
 sudo apt-get install flameshot
 sudo apt-get purge firefox
