@@ -30,20 +30,32 @@ Plug 'itchyny/lightline.vim'
 
 " EPLORER
 Plug 'preservim/nerdtree'
-let g:NERDTreeIgnore = ['^node_modules$'] " ~ https://stackoverflow.com/questions/61467343/how-to-ignore-certain-folders-when-recursively-opening-files-in-nerdtree
+let g:NERDTreeIgnore = ['^node_modules$', '^.git$'] " ~ https://stackoverflow.com/questions/61467343/how-to-ignore-certain-folders-when-recursively-opening-files-in-nerdtree
 
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " TOOLS
-Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-let g:coc_global_extensions = ['coc-tslint-plugin', 'coc-tsserver', 'coc-css', 'coc-html', 'coc-json', 'coc-prettier', 'coc-eslint']  " list of CoC extensions needed
+" Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+let g:coc_global_extensions = [
+        \ 'coc-tsserver', 
+        \ 'coc-css',
+        \ 'coc-html', 
+        \ 'coc-json', 
+        \ 'coc-discord-rpc',
+        \ 'coc-prettier', 
+        \ 'coc-eslint'
+        \]  " list of CoC extensions needed
+" \ 'coc-tslint-plugin', 
+
 " ~ https://github.com/neoclide/coc-prettier
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
+Plug 'rhysd/vim-clang-format'
 
 " REACT SECTION
 Plug 'maxmellon/vim-jsx-pretty'
@@ -55,7 +67,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " MISC & UTILS
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-Plug 'vimsence/vimsence'
+" Plug 'vimsence/vimsence'
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
@@ -83,24 +95,24 @@ call plug#end()
 syntax on
 
 set mouse=a
+set encoding=utf-8
 set noerrorbells
-set expandtab
 set smartindent
 set autoindent
 set number
 set relativenumber
 set numberwidth=1
 set nowrap
-set nohlsearch
-set incsearch
 
-set tabstop=4
-set shiftwidth=4
+" set tabstop=4
+" set shiftwidth=4
 set expandtab
 set scrolloff=8
 
 set ignorecase
-set encoding=utf-8
+set hlsearch
+set incsearch
+
 set showmatch
 set cursorline
 set termguicolors
@@ -182,13 +194,27 @@ inoremap <silent><expr> <TAB>
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-inoremap <expr>j pumvisible() ? "\<C-n>" : "\j"
-inoremap <expr>k pumvisible() ? "\<C-p>" : "\k"
+" inoremap <expr>j pumvisible() ? "\<C-n>" : "\j"
+" inoremap <expr>k pumvisible() ? "\<C-p>" : "\k"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 
 " Use <c-space> to trigger completion.
@@ -224,17 +250,17 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap <leader>l :call CocAction('diagnosticNext')<cr> 
-nmap <leader>h :call CocAction('diagnosticPrevious')<cr>
+nmap <leader>} :call CocAction('diagnosticNext')<cr> 
+nmap <leader>{ :call CocAction('diagnosticPrevious')<cr>
 
 nmap <leader>cc <Plug>(coc-command)
 nmap <leader>do <Plug>(coc-codeaction)
 nmap <leader>rn <Plug>(coc-rename)
-nmap <leader>p :CocCommand prettier.formatFile<cr>
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>p :CocCommand prettier.formatFile<cr>
 
 
 " Toggle comment
@@ -339,3 +365,17 @@ inoremap <c-BS> <c-o>diw
 " Execute programmingTemplate script in right panel
 " ~ https://github.com/JorgeArreolaS/ProgrammingToolkit
 :nmap <c-i> <c-w><c-l> i ./main.sh <cr> <c-\><c-n> <c-w><c-h>
+
+
+""
+"" Vimsense
+""
+"let g:vimsence_client_id = '728734859429675028'
+"let g:vimsence_small_text = 'NeoVim'
+"" let g:vimsence_small_image = 'neovim'
+"let g:vimsence_editing_details = 'Editing: {}'
+"let g:vimsence_editing_state = 'Working on: {}'
+"let g:vimsence_file_explorer_text = 'In NERDTree'
+"let g:vimsence_file_explorer_details = 'Looking for files'
+"" let g:vimsence_custom_icons = {'filetype': 'iconname'}
+
