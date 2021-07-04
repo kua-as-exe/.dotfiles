@@ -4,7 +4,9 @@ setLink (){
     file=$1
     chmod +x $file
 
-    binPath=$( [[ ! -z "$2" ]] && echo "$2" || echo "/bin/${1##*/}" )
+    filename="@${1##*/}"
+    filename=$( basename $filename .sh )
+    binPath=$( [[ ! -z "$2" ]] && echo "$2" || echo "/bin/$filename" )
 
     if [ -f "$binPath" ]; then
         echo "Existing link in $binPath, deleting..."
@@ -12,6 +14,7 @@ setLink (){
     fi
 
     echo "Creating link of: $file -> $binPath"
+    chmod +x $file
     sudo ln -f $file $binPath
 }
 

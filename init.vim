@@ -72,6 +72,7 @@ Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
+Plug 'mhinz/vim-startify'
 
 Plug 'dhruvasagar/vim-open-url'
 Plug 'terryma/vim-multiple-cursors'
@@ -149,6 +150,11 @@ if (has('termguicolors'))
   set termguicolors
 endif
 
+let g:startify_custom_header = startify#center([
+\ '🥐 Bienvenido, Jorge',
+\ ])
+
+
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
 " UTILS
@@ -161,8 +167,11 @@ nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
 " Start NERDTree and leave the cursor in it.
-autocmd VimEnter * NERDTree
+" autocmd VimEnter * NERDTree
 
+" Start NERDTree when Vim is started without file arguments.
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 
 " EMMET
@@ -278,11 +287,6 @@ nnoremap <C-Down> <C-W><C-J>
 nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
-" Resize panels
-" nmap <silent> <Leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
-" nmap <silent> <Leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
-" nmap <silent> <Leader>* :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
-" nmap <silent> <Leader>_ :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
