@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cat instalations.sh | sed -e "s/apt install/apt install -y/" | bash
+
 setLink (){
     file=$1
     chmod +x $file
@@ -24,3 +26,4 @@ for file in $( find ./scripts -type f ); do
 done
 
 alias n=nvim 
+alias rm=trash

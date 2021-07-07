@@ -105,9 +105,7 @@ set relativenumber
 set numberwidth=1
 set nowrap
 
-" set tabstop=4
-" set shiftwidth=4
-set expandtab
+set expandtab ts=2 sw=2 ai
 set scrolloff=8
 
 set ignorecase
@@ -118,6 +116,7 @@ set showmatch
 set cursorline
 set termguicolors
 set hidden
+set noshowmode
 
 let mapleader = " "
 
@@ -129,10 +128,30 @@ let mapleader = " "
 let g:material_theme_style = 'default-comunity'
 
 let g:lightline = {
-       \ 'colorscheme': 'srcery_drk',
-       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
-       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"  }
-       \ }
+        \ 'colorscheme': 'wombat',
+        \ 'active':{
+        \       'right': [
+        \               ['lineinfo'],
+        \               ['percent'],
+        \               ['filetype', 'keymap']
+        \       ]
+        \ },
+        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
+        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"  },
+        \ 'mode_map': {
+                \ 'n' : 'N',
+                \ 'i' : 'I',
+                \ 'R' : 'R',
+                \ 'v' : 'V',
+                \ 'V' : 'VL',
+                \ "\<C-v>": 'VB',
+                \ 'c' : 'C',
+                \ 's' : 'S',
+                \ 'S' : 'SL',
+                \ "\<C-s>": 'SB',
+                \ 't': 'T',
+        \ }
+        \ }
 
 colorscheme material
 hi Comment guifg=#50abbf
@@ -151,7 +170,9 @@ if (has('termguicolors'))
 endif
 
 let g:startify_custom_header = startify#center([
+\ '',
 \ '🥐 Bienvenido, Jorge',
+\ '',
 \ ])
 
 
@@ -185,6 +206,9 @@ let g:user_emmet_settings = {
     \  },
     \}
 
+" Indent all file
+"  ~ https://vim.fandom.com/wiki/Fix_indentation
+map <F7> gg=G<C-o><C-o>
 
 " Clear search
 "  ~ https://stackoverflow.com/a/657484
@@ -288,6 +312,14 @@ nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
 
+" Move between tabs Move between tabs
+nnoremap <A-Left> :tabprevious<CR>                                                                            
+nnoremap <A-Right> :tabnext<CR>
+" Start new panel
+nnoremap <A-T> :tabnew<CR>
+" Close panel
+" nnoremap <A-W> :tabclose<CR>
+
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
 nnoremap <A-j> :m .+1<CR>==
@@ -313,11 +345,15 @@ nnoremap <c-z> :x<CR>
 
 " exit with ESC
 "  ~ https://vi.stackexchange.com/a/6966
-tnoremap <c-Esc> <C-\><C-n> 
+" tnoremap <c-Esc> <C-\><C-n> 
 " go back to last thing with Ctrl+Z
 tnoremap <c-z> <C-\><C-n> <C-o>
 " start terminal with Alt+T
 nnoremap <A-t> :terminal<CR>
+" Commmand to set ESC as exit in terminal mode 
+: command! TermEscExit :tmap <esc> <c-\><c-n>
+" Run previous command in Normal Mode
+nnoremap t i <c-c><cr> <up><cr> <c-\><c-n>
 
 "  ~ https://github.com/neovim/neovim/issues/8816#issuecomment-410512452
 if has('nvim')
@@ -361,15 +397,10 @@ nnoremap <c-G> :OpenURL https://github.com/JorgeArreolaS<cr>
 nmap E PO
 " nmap <c-e> ggVGy<c-o>
 imap <c-z> <c-o>u
-nmap <c-q> :q <CR>
+nmap <A-W> :q <CR>
 
 " delete whole word with Ctrl + backspace
 inoremap <c-BS> <c-o>diw
-
-" Execute programmingTemplate script in right panel
-" ~ https://github.com/JorgeArreolaS/ProgrammingToolkit
-:nmap <c-i> <c-w><c-l> i ./main.sh <cr> <c-\><c-n> <c-w><c-h>
-
 
 ""
 "" Vimsense
