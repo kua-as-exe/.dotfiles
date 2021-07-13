@@ -23,7 +23,7 @@ if [[ -z "$file" ]]; then
   # [[ -e "programas/main.cpp" ]] && file="programas/main.cpp"
 fi
 
-echo -e "${cyn}${file}:${ENDCOLOR}"
+echo -e "${cyn}${file}:${end}"
 result=$(g++ $file -o ./main)
 
 if [[ ! -e ./main ]]; then

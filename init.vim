@@ -25,6 +25,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 " THEMES
+" Plug 'yashguptaz/calvera-dark.nvim'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
 
@@ -49,6 +50,7 @@ let g:coc_global_extensions = [
         \ 'coc-eslint'
         \]  " list of CoC extensions needed
 " \ 'coc-tslint-plugin', 
+Plug 'neoclide/jsonc.vim'
 
 " ~ https://github.com/neoclide/coc-prettier
 Plug 'HerringtonDarkholme/yats.vim'
@@ -73,7 +75,10 @@ Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
+" Plug 'folke/twilight.nvim'
+" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
+Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
 Plug 'terryma/vim-multiple-cursors'
 "  normal mode / visual mode
@@ -117,6 +122,7 @@ set cursorline
 set termguicolors
 set hidden
 set noshowmode
+set foldmethod=syntax
 
 let mapleader = " "
 
@@ -136,8 +142,8 @@ let g:lightline = {
         \               ['filetype', 'keymap']
         \       ]
         \ },
-        \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2"  },
-        \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3"  },
+        \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
+        \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"  },
         \ 'mode_map': {
                 \ 'n' : 'N',
                 \ 'i' : 'I',
@@ -154,6 +160,7 @@ let g:lightline = {
         \ }
 
 colorscheme material
+
 hi Comment guifg=#50abbf
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -175,6 +182,22 @@ let g:startify_custom_header = startify#center([
 \ '',
 \ ])
 
+" twilight
+" lua << EOF
+"   require("twilight").setup {
+"     -- your configuration comes here
+"     -- or leave it empty to use the default settings
+"     -- refer to the configuration section below
+"   }
+" EOF
+
+" Custom fold
+function! CustomFold()
+  return printf(' ~ %3d %s', v:foldend - v:foldstart + 1, getline(v:foldstart))
+endfunction
+
+set fillchars=fold:\ | set foldtext=CustomFold() 
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -182,7 +205,7 @@ let g:startify_custom_header = startify#center([
 "
 
 " EXPLORER
-nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR>
 " nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
@@ -283,8 +306,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
-nmap <leader>} :call CocAction('diagnosticNext')<cr> 
-nmap <leader>{ :call CocAction('diagnosticPrevious')<cr>
+nmap <leader>m :call CocAction('diagnosticNext')<cr> 
+nmap <leader>n :call CocAction('diagnosticPrevious')<cr>
 
 nmap <leader>cc <Plug>(coc-command)
 nmap <leader>do <Plug>(coc-codeaction)
@@ -402,8 +425,12 @@ nmap <A-W> :q <CR>
 " delete whole word with Ctrl + backspace
 inoremap <c-BS> <c-o>diw
 
+" tsconfig.json is actually jsonc, help TypeScript set the correct filetype
+autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
 ""
 "" Vimsense
+
 ""
 "let g:vimsence_client_id = '728734859429675028'
 "let g:vimsence_small_text = 'NeoVim'
