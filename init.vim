@@ -134,30 +134,50 @@ let mapleader = " "
 let g:material_theme_style = 'default-comunity'
 
 let g:lightline = {
-        \ 'colorscheme': 'wombat',
-        \ 'active':{
-        \       'right': [
-        \               ['lineinfo'],
-        \               ['percent'],
-        \               ['filetype', 'keymap']
-        \       ]
-        \ },
-        \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
-        \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"  },
-        \ 'mode_map': {
-                \ 'n' : 'N',
-                \ 'i' : 'I',
-                \ 'R' : 'R',
-                \ 'v' : 'V',
-                \ 'V' : 'VL',
-                \ "\<C-v>": 'VB',
-                \ 'c' : 'C',
-                \ 's' : 'S',
-                \ 'S' : 'SL',
-                \ "\<C-s>": 'SB',
-                \ 't': 'T',
-        \ }
-        \ }
+      \ 'colorscheme': 'wombat',
+      \ 'active':{
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+        \   'right': [
+      \               ['lineinfo'],
+      \               ['percent'],
+      \               ['filetype', 'keymap']
+      \       ]
+      \ },
+      \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
+      \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"  },
+      \ 'mode_map': {
+      \ 'n' : 'N',
+      \ 'i' : 'I',
+      \ 'R' : 'R',
+      \ 'v' : 'V',
+      \ 'V' : 'VL',
+      \ "\<C-v>": 'VB',
+      \ 'c' : 'C',
+      \ 's' : 'S',
+      \ 'S' : 'SL',
+      \ "\<C-s>": 'SB',
+      \ 't': 'T',
+      \ },
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+
+" file path relative to project git root directory
+" ~ https://github.com/itchyny/lightline.vim/issues/293#issuecomment-373710096
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
+
 
 colorscheme material
 
