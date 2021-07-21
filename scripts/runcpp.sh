@@ -1,8 +1,8 @@
 #!/bin/bash
 
 showCases=true # Muestra detalles los casos de prueba
-showResults=true # Muestra la salida de los programas
-showExpected=true # Muestra la salida esperada si se obtuvo respuesta incorrecta
+showResults=false # Muestra la salida de los programas
+showExpected=false # Muestra la salida esperada si se obtuvo respuesta incorrecta
 showTime=true # Muestra el tiempo tltal
 timePrecision=5  # Número de decimales [0, 9]
 

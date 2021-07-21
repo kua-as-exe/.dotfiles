@@ -1,4 +1,4 @@
-" 
+ " 
 " Personal Nvim Configuration
 " ~ Jorge Arreola
 "
@@ -71,6 +71,10 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 " Plug 'vimsence/vimsence'
 Plug 'tpope/vim-commentary'
+" ~ https://github.com/tpope/vim-commentary
+" [ gcc ] to comment out a line
+" [ gc ] to comment out the target of a motion (for example, [ gcap ] to comment out a paragraph)
+" [ gc ] in visual mode to comment out the selection
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
@@ -122,7 +126,9 @@ set cursorline
 set termguicolors
 set hidden
 set noshowmode
+
 set foldmethod=syntax
+autocmd BufWinEnter * silent! :%foldopen! " ~ https://stackoverflow.com/a/23672376
 
 let mapleader = " "
 
@@ -137,41 +143,77 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active':{
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
-        \   'right': [
-      \               ['lineinfo'],
-      \               ['percent'],
-      \               ['filetype', 'keymap']
-      \       ]
+      \   'right': [  ['lineinfo'], ['percent'], ['filetype', 'keymap'] ]
       \ },
       \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
       \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"  },
       \ 'mode_map': {
-      \ 'n' : 'N',
-      \ 'i' : 'I',
-      \ 'R' : 'R',
-      \ 'v' : 'V',
-      \ 'V' : 'VL',
+      \ 'n' : 'N', 'i' : 'I', 'R' : 'R',
+      \ 'v' : 'V', 'V' : 'VL',
       \ "\<C-v>": 'VB',
-      \ 'c' : 'C',
-      \ 's' : 'S',
-      \ 'S' : 'SL',
+      \ 'c' : 'C', 's' : 'S', 'S' : 'SL',
       \ "\<C-s>": 'SB',
       \ 't': 'T',
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
+      \   'modified': 'LightlineModified',
+      \   'readonly': 'LightlineReadonly',
+      \   'lineinfo': 'LightlineLineinfo',
+      \   'percent': 'LightlinePercent',
+      \   'filetype': 'LightlineFiletype'
       \ },
       \ }
 
-" file path relative to project git root directory
-" ~ https://github.com/itchyny/lightline.vim/issues/293#issuecomment-373710096
 function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
   let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-    return path[len(root)+1:]
+  let splitted = split(path, "/")
+  let filename = expand('%:t:r')
+
+  " Hide filename in nerdtree
+  if &filetype == 'nerdtree'
+    return splitted[len(splitted)-2] " root dir name
   endif
-  return expand('%')
+  " Hide filename in terminal
+  if &buftype == 'terminal'
+    return ""
+  endif
+  " file path relative to project git root directory
+  " ~ https://github.com/itchyny/lightline.vim/issues/293#issuecomment-373710096
+  " let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  " if path[:len(root)-1] ==# root
+  "  return path[len(root)+1:]
+  " endif
+  
+  " Show the up folder + filename
+  " eg: pages/index.tsx
+  let lastTwo = join( splitted[-2:], "/" )
+  return lastTwo
+
+endfunction
+
+function! Hidden()
+  return &filetype =~# '\v(help|vimfiler|unite|nerdtree)'
+endfunction
+
+function! LightlineReadonly()
+  return &readonly && !Hidden() ? 'RO' : ''
+endfunction
+
+function! LightlineModified()
+  return !Hidden() && &modified ? '+': ''
+endfunction
+
+function! LightlineLineinfo()
+  return !Hidden() ? printf("%3d:%-2d", line('.'), col('.')) : ''
+endfunction
+
+function! LightlinePercent()
+  return !Hidden() ? printf("%3d%%", 100 * line('.') / line('$')) : ''
+endfunction
+
+function! LightlineFiletype()
+  return !Hidden() && &ft!=#"" ? &ft: ''
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
@@ -184,11 +226,11 @@ colorscheme material
 hi Comment guifg=#50abbf
 hi Normal guibg=NONE ctermbg=NONE
 
+"
 " For Neovim 0.1.3 and 0.1.4 - https://github.com/neovim/neovim/pull/2198
 if (has('nvim'))
   let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 endif
-
 " For Neovim > 0.1.5 and Vim > patch 7.4.1799 - https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162
 " Based on Vim patch 7.4.1770 (`guicolors` option) - https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd
 "  ~ https://github.com/neovim/neovim/wiki/Following-HEAD#20160511
@@ -213,30 +255,20 @@ let g:startify_custom_header = startify#center([
 
 " Custom fold
 function! CustomFold()
-  return printf(' ~ %3d %s', v:foldend - v:foldstart + 1, getline(v:foldstart))
+  return printf(' ⧐  %3d %s', v:foldend - v:foldstart + 1, getline(v:foldstart))
 endfunction
 
 set fillchars=fold:\ | set foldtext=CustomFold() 
 
-
-" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g:python3_host_prog='/bin/python3'
+"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
 " UTILS
 "
 
 " EXPLORER
-" nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
-
-" Start NERDTree and leave the cursor in it.
-" autocmd VimEnter * NERDTree
-
-" Start NERDTree when Vim is started without file arguments.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
 
 " EMMET
 " let g:user_emmet_leader_key='<Tab>'
@@ -249,16 +281,19 @@ let g:user_emmet_settings = {
     \  },
     \}
 
+" auto-pairs
+" ~ https://github.com/jiangmiao/auto-pairs
+au FileType html,tsx,jsx let b:AutoPairs = AutoPairsDefine({'<' : '>', '<!--': '-->'})
+
 " Indent all file
 "  ~ https://vim.fandom.com/wiki/Fix_indentation
-map <F7> gg=G<C-o><C-o>
+nnoremap <F7> gg=G<C-o><C-o>
 
 " Clear search
 "  ~ https://stackoverflow.com/a/657484
 :command! C let @/=""
 
 " This is from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
@@ -322,22 +357,21 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gr <Plug>(coc-references)
 
-nmap <leader>m :call CocAction('diagnosticNext')<cr> 
-nmap <leader>n :call CocAction('diagnosticPrevious')<cr>
+nnoremap <leader>m :call CocAction('diagnosticNext')<cr> 
+nnoremap <leader>n :call CocAction('diagnosticPrevious')<cr>
 
-nmap <leader>cc <Plug>(coc-command)
-nmap <leader>do <Plug>(coc-codeaction)
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>cc <Plug>(coc-command)
+nnoremap <leader>do <Plug>(coc-codeaction)
+nnoremap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>p :CocCommand prettier.formatFile<cr>
-
+xnoremap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>f  <Plug>(coc-format-selected)
+nnoremap <leader>p :CocCommand prettier.formatFile<cr>
 
 " Toggle comment
 "  ~ https://stackoverflow.com/a/40167715
@@ -357,11 +391,11 @@ nnoremap <C-Left> <C-W><C-H>
 
 " Move between tabs Move between tabs
 nnoremap <A-Left> :tabprevious<CR>                                                                            
+nnoremap <A-h> :tabprevious<CR>                                                                            
 nnoremap <A-Right> :tabnext<CR>
+nnoremap <A-l> :tabnext<CR>
 " Start new panel
 nnoremap <A-T> :tabnew<CR>
-" Close panel
-" nnoremap <A-W> :tabclose<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
@@ -378,19 +412,10 @@ nnoremap <A-K> yyP
 vnoremap <A-J> yp
 vnoremap <A-K> yP
 
-" Ctrl-Z to save and close file
-nnoremap <c-z> :x<CR>
-" inoremap <c-z> <c-o>:x<CR>
-" nnoremap <c-Z> :q!<CR>
-" inoremap <c-Z> <c-o>:q!<CR>
-
 " TERMINAL UTILS
-
+"
 " exit with ESC
 "  ~ https://vi.stackexchange.com/a/6966
-" tnoremap <c-Esc> <C-\><C-n> 
-" go back to last thing with Ctrl+Z
-tnoremap <c-z> <C-\><C-n> <C-o>
 " start terminal with Alt+T
 nnoremap <A-t> :terminal<CR>
 " Commmand to set ESC as exit in terminal mode 
@@ -403,61 +428,36 @@ if has('nvim')
     autocmd TermOpen term://* startinsert
 endif
 
-" Clipboard linux
-" Copy all file
-nmap <c-e> :%w !xsel -i -b <cr><cr>
-" Copy selected
-" ~ https://stackoverflow.com/a/15971506
-vnoremap <C-C> :w !xclip -i -sel c<CR><CR>
+set clipboard=unnamed
+" Clipboard linux ~ https://stackoverflow.com/a/15971506
+"   gg"+yG – copy the entire buffer into + (normal mode)
+"   "*dd – cut the current line into * (normal mode)
+"   "+p – paste from + after the cursor (works in both normal and visual modes)
+"   :%y * – copy the entire buffer into * (this one is an ex command)
 
 " clipboard suppport to WSL
 "  ~ https://superuser.com/a/1557751
-
-set clipboard+=unnamedplus
-let g:clipboard = {
-          \   'name': 'win32yank-wsl',
-          \   'copy': {
-          \      '+': 'win32yank.exe -i --crlf',
-          \      '*': 'win32yank.exe -i --crlf',
-          \    },
-          \   'paste': {
-          \      '+': 'win32yank.exe -o --lf',
-          \      '*': 'win32yank.exe -o --lf',
-          \   },
-          \   'cache_enabled': 0,
-          \ }
-
+" let g:clipboard = {
+    " \   'name': 'win32yank-wsl',
+    " \   'copy': { '+': 'win32yank.exe -i --crlf', '*': 'win32yank.exe -i --crlf' },
+    " \   'paste': {  '+': 'win32yank.exe -o --lf',  '*': 'win32yank.exe -o --lf' },
+    " \   'cache_enabled': 0,
+    " \ }
 " WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
-endif
+" let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
+" if executable(s:clip)
+"     augroup WSLYank
+"         autocmd!
+"         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+"     augroup END
+" endif
 
-nnoremap <c-G> :OpenURL https://github.com/JorgeArreolaS<cr>
-nmap E PO
 " nmap <c-e> ggVGy<c-o>
-imap <c-z> <c-o>u
-nmap <A-W> :q <CR>
+inoremap <c-z> <c-o>u
+nnoremap <A-W> :q <CR>
 
 " delete whole word with Ctrl + backspace
 inoremap <c-BS> <c-o>diw
 
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
-
-""
-"" Vimsense
-
-""
-"let g:vimsence_client_id = '728734859429675028'
-"let g:vimsence_small_text = 'NeoVim'
-"" let g:vimsence_small_image = 'neovim'
-"let g:vimsence_editing_details = 'Editing: {}'
-"let g:vimsence_editing_state = 'Working on: {}'
-"let g:vimsence_file_explorer_text = 'In NERDTree'
-"let g:vimsence_file_explorer_details = 'Looking for files'
-"" let g:vimsence_custom_icons = {'filetype': 'iconname'}
-

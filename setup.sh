@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat instalations.sh | sed -e "s/apt install/apt install -y/" | bash
+# cat instalations.sh | sed -e "s/apt install/apt install -y/" | bash
 
 setLink (){
     file=$1
