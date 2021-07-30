@@ -45,17 +45,17 @@ let g:coc_global_extensions = [
         \ 'coc-css',
         \ 'coc-html', 
         \ 'coc-json', 
-        \ 'coc-discord-rpc',
         \ 'coc-prettier', 
-        \ 'coc-eslint'
-        \]  " list of CoC extensions needed
+        \ 'coc-eslint',
+        \ 'coc-discord-rpc', 
+      \]  " list of CoC extensions needed
 " \ 'coc-tslint-plugin', 
 Plug 'neoclide/jsonc.vim'
 
 " ~ https://github.com/neoclide/coc-prettier
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'jparise/vim-graphql'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'jparise/vim-graphql'
 Plug 'tpope/vim-fugitive'
 Plug 'rhysd/vim-clang-format'
 
@@ -69,7 +69,6 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " MISC & UTILS
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
-" Plug 'vimsence/vimsence'
 Plug 'tpope/vim-commentary'
 " ~ https://github.com/tpope/vim-commentary
 " [ gcc ] to comment out a line
@@ -80,7 +79,7 @@ Plug 'tpope/vim-surround'
 Plug 'mattn/emmet-vim'
 Plug 'mhinz/vim-startify'
 " Plug 'folke/twilight.nvim'
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+" Plug 'andweeb/presence.nvim'
 
 Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
@@ -94,6 +93,15 @@ Plug 'terryma/vim-multiple-cursors'
 "  You can now change the virtual cursors + selection with visual mode
 "  commands. For instance: c, s, I, A work without any issues. You could also
 "  go to normal mode by pressing v and use normal commands there.4
+
+" Telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'nvim-telescope/telescope-symbols.nvim'
+
 call plug#end()
 
 
@@ -131,6 +139,71 @@ set foldmethod=syntax
 autocmd BufWinEnter * silent! :%foldopen! " ~ https://stackoverflow.com/a/23672376
 
 let mapleader = " "
+
+" TELESCOPE
+" Find files using Telescope command-line sugar.
+nnoremap <leader>t <cmd>Telescope<cr>
+nnoremap <leader>c <cmd>Telescope treesiter<cr>
+nnoremap <leader>e <cmd>Telescope symbols<cr>
+nnoremap <leader>b <cmd>Telescope file_browser<cr>
+nnoremap <leader>gs <cmd>Telescope git_status<cr>
+nnoremap <leader>gc <cmd>Telescope git_commits<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>: <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    vimgrep_arguments = {
+      'rg',
+      '--hidden',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case'
+    },
+    prompt_prefix = "  ",
+    selection_caret = "> ",
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    layout_strategy = "horizontal",
+    layout_config = {
+      horizontal = {
+        mirror = false,
+      },
+      vertical = {
+        mirror = false,
+      },
+    },
+    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+    file_ignore_patterns = {
+      ".git",
+      "node_modules"
+    },
+    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+    winblend = 0,
+    border = {},
+    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+    color_devicons = true,
+    use_less = true,
+    path_display = {},
+    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+
+    -- Developer configurations: Not meant for general override
+    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  }
+}
+EOF
+
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -260,7 +333,7 @@ endfunction
 
 set fillchars=fold:\ | set foldtext=CustomFold() 
 
-g:python3_host_prog='/bin/python3'
+let g:python3_host_prog='/bin/python3'
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
 " UTILS
@@ -461,3 +534,4 @@ inoremap <c-BS> <c-o>diw
 
 " tsconfig.json is actually jsonc, help TypeScript set the correct filetype
 autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
+
