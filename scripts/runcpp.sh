@@ -1,9 +1,9 @@
 #!/bin/bash
 
 showCases=true # Muestra detalles los casos de prueba
-showResults=false # Muestra la salida de los programas
-showExpected=false # Muestra la salida esperada si se obtuvo respuesta incorrecta
-showTime=true # Muestra el tiempo tltal
+showResults=true # Muestra la salida de los programas
+showExpected=true # Muestra la salida esperada si se obtuvo respuesta incorrecta
+showTime=false # Muestra el tiempo tltal
 timePrecision=5  # Número de decimales [0, 9]
 
 # clear
@@ -74,7 +74,7 @@ runCase(){
       printf " "
     fi
 
-    printf "[${mag}$( bc <<< "scale=$timePrecision; $testDuration/1000000000" ) s${end}]"
+    [ $showTime == true ] && printf "[${mag}$( bc <<< "scale=$timePrecision; $testDuration/1000000000" ) s${end}]"
     printCase "\n"
   }
 

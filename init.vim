@@ -1,4 +1,4 @@
- " 
+" 
 " Personal Nvim Configuration
 " ~ Jorge Arreola
 "
