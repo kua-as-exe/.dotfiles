@@ -73,7 +73,7 @@ function! LightlineLineinfo()
 endfunction
 
 function! LightlinePercent()
-  return !Hidden() ? printf("%3d%%", 100 * line('.') / line('$')) : ''
+  return !(&filetype =~# '\v(vimfiler|unite|nerdtree)' || &buftype == 'terminal') ? printf("%3d%%", 100 * line('.') / line('$')) : ''
 endfunction
 
 function! LightlineFiletype()
@@ -89,3 +89,12 @@ endfunction
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
+
+let s:p = g:lightline#colorscheme#wombat#palette
+
+"let s:p.{mode}.{where} = [ [ {guifg}, {guibg}, {ctermfg}, {ctermbg} ], ... ]
+let s:p.tabline.tabsel = [ [ '#d0d0d0', '#041f4f', 252, 66, 'bold' ] ]
+
+let g:lightline#colorscheme#wombat#palette = s:p
+unlet s:p
+

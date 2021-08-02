@@ -54,6 +54,7 @@ source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/lightline.vim
 source ~/.dotfiles/nvim/nerdtree.vim
 source ~/.dotfiles/nvim/telescope.vim
+source ~/.dotfiles/nvim/startify.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim

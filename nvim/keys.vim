@@ -21,13 +21,18 @@ nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
 
+" Start new tab
+nnoremap <A-T> :tabnew<CR>
 " Move between tabs Move between tabs
 nnoremap <A-Left> :tabprevious<CR>                                                                            
 nnoremap <A-h> :tabprevious<CR>                                                                            
 nnoremap <A-Right> :tabnext<CR>
 nnoremap <A-l> :tabnext<CR>
-" Start new panel
-nnoremap <A-T> :tabnew<CR>
+" Move tabs
+nnoremap <A-H> :tabm -1<CR>
+nnoremap <A-S-Left> :tabm -1<CR>
+nnoremap <A-L> :tabm +1<CR>
+nnoremap <A-S-Right> :tabm +1<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
