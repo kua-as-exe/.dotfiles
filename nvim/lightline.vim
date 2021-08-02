@@ -2,7 +2,7 @@
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active':{
-      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
       \   'right': [  ['lineinfo'], ['percent'], ['filetype', 'keymap'] ]
       \ },
       \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
@@ -21,7 +21,11 @@ let g:lightline = {
       \   'readonly': 'LightlineReadonly',
       \   'lineinfo': 'LightlineLineinfo',
       \   'percent': 'LightlinePercent',
-      \   'filetype': 'LightlineFiletype'
+      \   'filetype': 'LightlineFiletype',
+      \   'gitbranch': 'FugitiveHead'
+      \ },
+      \ 'tab_component_function': {
+      \   'tabnum': 'LightlineWebDevIcons',
       \ },
       \ }
 
@@ -65,7 +69,7 @@ function! LightlineModified()
 endfunction
 
 function! LightlineLineinfo()
-  return !Hidden() ? printf("%3d:%-2d", line('.'), col('.')) : ''
+  return !Hidden() || &buftype != 'terminal' ? printf("%3d:%-2d", line('.'), col('.')) : ''
 endfunction
 
 function! LightlinePercent()
@@ -74,6 +78,12 @@ endfunction
 
 function! LightlineFiletype()
   return !Hidden() && &ft!=#"" ? &ft: ''
+endfunction
+
+" ~ https://github.com/itchyny/lightline.vim/issues/469#issuecomment-630819474
+function! LightlineWebDevIcons(n)
+  let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
+  return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
 endfunction
 
 let g:unite_force_overwrite_statusline = 0

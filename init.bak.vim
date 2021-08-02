@@ -3,27 +3,15 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " TOOLS
 " Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-let g:coc_global_extensions = [
-        \ 'coc-tsserver', 
-        \ 'coc-css',
-        \ 'coc-html', 
-        \ 'coc-json', 
-        \ 'coc-prettier', 
-        \ 'coc-eslint',
-        \ 'coc-discord-rpc', 
-      \]  " list of CoC extensions needed
-" \ 'coc-tslint-plugin', 
 Plug 'neoclide/jsonc.vim'
 
 " ~ https://github.com/neoclide/coc-prettier
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'jparise/vim-graphql'
-Plug 'tpope/vim-fugitive'
 Plug 'rhysd/vim-clang-format'
-
 " REACT SECTION
+
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'pangloss/vim-javascript'
 Plug 'peitalin/vim-jsx-typescript'
@@ -37,79 +25,8 @@ Plug 'mattn/emmet-vim'
 " Plug 'andweeb/presence.nvim'
 
 
-" Telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'nvim-telescope/telescope-symbols.nvim'
-
 call plug#end()
 
-" TELESCOPE
-" Find files using Telescope command-line sugar.
-nnoremap <leader>t <cmd>Telescope<cr>
-nnoremap <leader>c <cmd>Telescope treesiter<cr>
-nnoremap <leader>e <cmd>Telescope symbols<cr>
-nnoremap <leader>b <cmd>Telescope file_browser<cr>
-nnoremap <leader>gs <cmd>Telescope git_status<cr>
-nnoremap <leader>gc <cmd>Telescope git_commits<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>: <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-lua << EOF
-require('telescope').setup{
-  defaults = {
-    vimgrep_arguments = {
-      'rg',
-      '--hidden',
-      '--color=never',
-      '--no-heading',
-      '--with-filename',
-      '--line-number',
-      '--column',
-      '--smart-case'
-    },
-    prompt_prefix = "  ",
-    selection_caret = "> ",
-    entry_prefix = "  ",
-    initial_mode = "insert",
-    selection_strategy = "reset",
-    sorting_strategy = "descending",
-    layout_strategy = "horizontal",
-    layout_config = {
-      horizontal = {
-        mirror = false,
-      },
-      vertical = {
-        mirror = false,
-      },
-    },
-    file_sorter =  require'telescope.sorters'.get_fuzzy_file,
-    file_ignore_patterns = {
-      ".git",
-      "node_modules"
-    },
-    generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
-    winblend = 0,
-    border = {},
-    borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
-    color_devicons = true,
-    use_less = true,
-    path_display = {},
-    set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
-    file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
-    grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
-    qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
-
-    -- Developer configurations: Not meant for general override
-    buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
-  }
-}
-EOF
 
 "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
@@ -128,9 +45,6 @@ let g:user_emmet_settings = {
     \}
 
 
-" This is from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
