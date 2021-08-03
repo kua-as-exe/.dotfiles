@@ -1,19 +1,9 @@
 
 call plug#begin('~/.local/share/nvim/plugged')
 
-" TOOLS
-" Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-
-Plug 'HerringtonDarkholme/yats.vim'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'jparise/vim-graphql'
 Plug 'rhysd/vim-clang-format'
-" REACT SECTION
 
-" MISC & UTILS
 Plug 'mattn/emmet-vim'
-" Plug 'folke/twilight.nvim'
-
 
 call plug#end()
 

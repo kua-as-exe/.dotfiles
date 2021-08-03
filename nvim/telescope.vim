@@ -1,13 +1,14 @@
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>t <cmd>Telescope<cr>
-nnoremap <leader>c <cmd>Telescope treesiter<cr>
+nnoremap <leader>c <cmd>Telescope treesitter<cr>
 nnoremap <leader>e <cmd>Telescope symbols<cr>
 nnoremap <leader>b <cmd>Telescope file_browser<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 nnoremap <leader>gc <cmd>Telescope git_commits<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fc <cmd>Telescope commands<cr>
 nnoremap <leader>fg <cmd>Telescope git_files<cr>
 nnoremap <leader>: <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>

@@ -8,6 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
+Plug 'folke/twilight.nvim'
 
 " Core Plugins
 Plug 'preservim/nerdtree'
@@ -61,6 +62,7 @@ source ~/.dotfiles/nvim/nerdtree.vim
 source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/startify.vim
 source ~/.dotfiles/nvim/coc.vim
+source ~/.dotfiles/nvim/twilight.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
