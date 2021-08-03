@@ -3,7 +3,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " TOOLS
 " Plug 'neoclide/coc.nvim', {  'branch': 'release',  'do': 'yarn install --frozen-lockfile' } " this is for auto complete, prettier and tslinting
-Plug 'neoclide/jsonc.vim'
 
 Plug 'HerringtonDarkholme/yats.vim'
 " Plug 'leafgarland/typescript-vim'
@@ -48,7 +47,4 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-
-" tsconfig.json is actually jsonc, help TypeScript set the correct filetype
-autocmd BufRead,BufNewFile tsconfig.json set filetype=jsonc
 
