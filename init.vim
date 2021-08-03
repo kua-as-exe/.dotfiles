@@ -16,6 +16,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fugitive'
+Plug 'APZelos/blamer.nvim'
 
 " Util Plugins
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
@@ -57,6 +58,7 @@ source ~/.dotfiles/nvim/sets.vim
 source ~/.dotfiles/nvim/clipboard.vim
 source ~/.dotfiles/nvim/terminal.vim
 
+source ~/.dotfiles/nvim/blamer.vim
 source ~/.dotfiles/nvim/lightline.vim
 source ~/.dotfiles/nvim/nerdtree.vim
 source ~/.dotfiles/nvim/telescope.vim
