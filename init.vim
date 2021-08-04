@@ -52,8 +52,6 @@ Plug 'nvim-telescope/telescope-symbols.nvim'
 
 call plug#end()
 
-let g:node_client_debug = 1
-
 source ~/.dotfiles/nvim/theme.vim
 source ~/.dotfiles/nvim/sets.vim
 source ~/.dotfiles/nvim/clipboard.vim
@@ -91,4 +89,13 @@ source ~/.dotfiles/nvim/keys.vim
 "   <C-k> " delete forward to end of line
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
+" 
+" g:AutoPairsShortcutToggle
+" Default: '<M-p>'
+" The shortcut to toggle autopairs.
+"
+" g:AutoPairsShortcutJump
+" Default: '<M-n>'
+" Jump to the next closed pair
+"
+" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
