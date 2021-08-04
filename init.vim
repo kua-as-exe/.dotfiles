@@ -36,6 +36,7 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/jsonc.vim'
+Plug 'mattn/emmet-vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
@@ -65,6 +66,7 @@ source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/startify.vim
 source ~/.dotfiles/nvim/coc.vim
 source ~/.dotfiles/nvim/twilight.vim
+source ~/.dotfiles/nvim/emmet.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim

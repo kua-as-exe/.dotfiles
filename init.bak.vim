@@ -3,26 +3,12 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'rhysd/vim-clang-format'
 
-Plug 'mattn/emmet-vim'
 
 call plug#end()
 
 
-"~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-"
-" UTILS
-"
-
 " EMMET
 " let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {
-    \  'javascript.jsx' : {
-    \      'extends' : 'jsx',
-    \  },
-    \  'typescript' : {
-    \      'extends' : 'jsx',
-    \  },
-    \}
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -4,
