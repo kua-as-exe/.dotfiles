@@ -23,5 +23,5 @@ let g:startify_commands = [
 let g:startify_session_persistence = 1
 let g:startify_files_number        = 8
 
-nnoremap <M-S> :Startify<cr>
+nnoremap <M-s> :Startify<cr>
 

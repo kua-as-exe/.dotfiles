@@ -20,6 +20,9 @@ nnoremap <C-Down> <C-W><C-J>
 nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
+" Split panels
+nnoremap <A-S> :sp<cr>
+nnoremap <A-V> :vsp<cr>
 
 " Start new tab
 nnoremap <A-T> :tabnew<CR>
