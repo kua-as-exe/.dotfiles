@@ -54,3 +54,8 @@ vnoremap <A-K> yP
 
 " Exit with Alt+Shitft+w
 nnoremap <A-W> :q <CR>
+
+" Jump over Git hunks 
+nmap <A-M> <Plug>(GitGutterNextHunk)
+nmap <A-N> <Plug>(GitGutterPrevHunk)
+
