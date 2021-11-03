@@ -9,6 +9,7 @@ Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
 Plug 'mhinz/vim-startify'
 Plug 'folke/twilight.nvim'
+Plug 'Yggdroot/indentLine'
 
 " Core Plugins
 Plug 'preservim/nerdtree'

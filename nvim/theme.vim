@@ -5,3 +5,6 @@ colorscheme material
 
 hi Comment guifg=#50abbf
 hi Normal guibg=NONE ctermbg=NONE
+
+let g:indentLine_char_list = ['|', '¦']
+
