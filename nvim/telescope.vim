@@ -1,7 +1,8 @@
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>t <cmd>Telescope<cr>
-nnoremap <leader>c <cmd>Telescope treesitter<cr>
+" nnoremap <leader>c <cmd>Telescope treesitter<cr>
+nnoremap <leader>c <cmd>Telescope neoclip<cr>
 nnoremap <leader>e <cmd>Telescope symbols<cr>
 nnoremap <leader>b <cmd>Telescope file_browser<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
@@ -61,6 +62,21 @@ require('telescope').setup{
 
     -- Developer configurations: Not meant for general override
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  },
+  pickers = {
+    buffers = {
+      show_all_buffers = true,
+      sort_lastused = true,
+      --previewer = false,
+      mappings = {
+        i = {
+          ["<c-D>"] = require("telescope.actions").delete_buffer,
+        },
+        n = {
+          ["<c-D>"] = require("telescope.actions").delete_buffer,
+        }
+      }
+    }
   }
 }
 EOF

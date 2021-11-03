@@ -51,3 +51,9 @@ set fillchars=fold:\ | set foldtext=CustomFold()
 " This is from: https://thoughtbot.com/blog/modern-typescript-and-react-development-in-vim
 autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
 autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+
+" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
+" From: https://vimawesome.com/plugin/repeat-vim
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+ 

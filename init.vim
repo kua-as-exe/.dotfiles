@@ -23,9 +23,11 @@ Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
 Plug 'tpope/vim-commentary'
 Plug 'luochen1990/rainbow'
 Plug 'tpope/vim-surround'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'terryma/vim-multipSe-cursors'
 Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
+Plug 'tpope/vim-repeat' 
+Plug 'AckslD/nvim-neoclip.lua'
 
 " Coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -65,6 +67,7 @@ source ~/.dotfiles/nvim/startify.vim
 source ~/.dotfiles/nvim/coc.vim
 source ~/.dotfiles/nvim/twilight.vim
 source ~/.dotfiles/nvim/emmet.vim
+source ~/.dotfiles/nvim/neoclip.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
