@@ -71,6 +71,3 @@ highlight GitGutterAdd    ctermfg=2
 highlight GitGutterChange ctermfg=3
 highlight clear SignColumn
 
-" Preview Hunk
-nmap ghp <Plug>(GitGutterPreviewHunk)
-
