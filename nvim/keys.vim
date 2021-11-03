@@ -55,7 +55,13 @@ vnoremap <A-K> yP
 " Exit with Alt+Shitft+w
 nnoremap <A-W> :q <CR>
 
-" Jump over Git hunks 
+" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
+" GitGlutter signs
+"
+" Jump over hunks 
 nmap <A-M> <Plug>(GitGutterNextHunk)
 nmap <A-N> <Plug>(GitGutterPrevHunk)
+
+" Preview Hunk
+nmap ghp <Plug>(GitGutterPreviewHunk)
 
