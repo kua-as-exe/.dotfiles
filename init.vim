@@ -16,6 +16,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
 
 " Util Plugins
@@ -71,7 +72,6 @@ source ~/.dotfiles/nvim/neoclip.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
-
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "

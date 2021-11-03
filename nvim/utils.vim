@@ -56,4 +56,17 @@ autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 " ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
 " From: https://vimawesome.com/plugin/repeat-vim
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
- 
+
+" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
+
+: command! RefreshSource source ~/.dotfiles/init.vim
+
+
+" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
+" GitGlutter signs
+"
+set signcolumn=yes
+highlight GitGutterDelete ctermfg=1
+highlight GitGutterAdd    ctermfg=2
+highlight GitGutterChange ctermfg=3
+highlight clear SignColumn
