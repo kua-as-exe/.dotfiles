@@ -3,7 +3,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active':{
       \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [  ['lineinfo'], ['percent'], ['filetype', 'keymap'] ]
+      \   'right': [  ['lineinfo'], ['percent'], [ 'gitstatus' , 'filetype', 'keymap'] ]
       \ },
       \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
       \ 'subseparator': { 'left': "\ue0b9", 'right': "\ue0bb"  },
@@ -22,7 +22,8 @@ let g:lightline = {
       \   'lineinfo': 'LightlineLineinfo',
       \   'percent': 'LightlinePercent',
       \   'filetype': 'LightlineFiletype',
-      \   'gitbranch': 'FugitiveHead'
+      \   'gitbranch': 'FugitiveHead',
+      \   'gitstatus': 'GitStatus'
       \ },
       \ 'tab_component_function': {
       \   'tabnum': 'LightlineWebDevIcons',
@@ -84,6 +85,14 @@ endfunction
 function! LightlineWebDevIcons(n)
   let l:bufnr = tabpagebuflist(a:n)[tabpagewinnr(a:n) - 1]
   return WebDevIconsGetFileTypeSymbol(bufname(l:bufnr))
+endfunction
+
+function! GitStatus()
+  if Hidden()
+    return ''
+  endif
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
