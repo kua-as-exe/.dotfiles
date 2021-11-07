@@ -33,7 +33,7 @@ Plug 'AckslD/nvim-neoclip.lua'
 Plug 'z3t0/arduvim'
 
 " Coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'pangloss/vim-javascript'
 Plug 'leafgarland/typescript-vim'
@@ -55,6 +55,19 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-telescope/telescope-symbols.nvim'
 
+" LSP
+
+Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+Plug 'SirVer/ultisnips'
+Plug 'quangnguyen30192/cmp-nvim-ultisnips'
+
 call plug#end()
 
 source ~/.dotfiles/nvim/theme.vim
@@ -67,10 +80,10 @@ source ~/.dotfiles/nvim/lightline.vim
 source ~/.dotfiles/nvim/nerdtree.vim
 source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/startify.vim
-source ~/.dotfiles/nvim/coc.vim
 source ~/.dotfiles/nvim/twilight.vim
 source ~/.dotfiles/nvim/emmet.vim
 source ~/.dotfiles/nvim/neoclip.vim
+source ~/.dotfiles/nvim/lsp.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
