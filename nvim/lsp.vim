@@ -53,7 +53,6 @@ set completeopt=menu,menuone,noselect
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    buf_set_keymap('n', 'ac', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
     buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
@@ -68,13 +67,29 @@ set completeopt=menu,menuone,noselect
     buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
 
-  local servers = {'tsserver', 'pyright'}
+  local servers = {'tsserver', 'pyright', 'clangd'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
       capabilities = capabilities,
     }
   end
+  
+  nvim_lsp.arduino_language_server.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd =  {
+      -- Required
+      -- "arduino-language-server",
+      "arduino-language-server",
+      "-cli-config", "~/.arduino15/arduino-cli.yaml",
+      -- Optional
+      -- "-cli", "/path/to/ardUIno-cli",
+      -- "-clangd", "/path/to/clangd"
+    },
+  })
+
+  -- nvim_lsp.arduino_language_server.setup{}
 
 EOF
 

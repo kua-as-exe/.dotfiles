@@ -30,7 +30,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
 Plug 'tpope/vim-repeat' 
 Plug 'AckslD/nvim-neoclip.lua'
-Plug 'z3t0/arduvim'
+" Plug 'z3t0/arduvim'
 
 " Coc
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
