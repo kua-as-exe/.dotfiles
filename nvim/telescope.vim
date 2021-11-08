@@ -3,6 +3,7 @@
 nnoremap <leader>t <cmd>Telescope<cr>
 " nnoremap <leader>c <cmd>Telescope treesitter<cr>
 nnoremap <leader>c <cmd>Telescope neoclip<cr>
+inoremap <A-p> <cmd>Telescope neoclip<cr>
 nnoremap <leader>e <cmd>Telescope symbols<cr>
 nnoremap <leader>b <cmd>Telescope file_browser<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
@@ -14,6 +15,13 @@ nnoremap <leader>fg <cmd>Telescope git_files<cr>
 nnoremap <leader>: <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" TODO pasar esta wea a lua para hacerla bonita wtf
+nnoremap <leader>lr <cmd> :lua require'telescope.builtin'.lsp_references({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
+nnoremap <leader>li <cmd> :lua require'telescope.builtin'.lsp_implementations({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
+nnoremap <leader>ld <cmd> :lua require'telescope.builtin'.lsp_definitions({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
+nnoremap <leader>ldd <cmd> :lua require'telescope.builtin'.lsp_document_diagnostics({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
+nnoremap <leader>lca <cmd> :lua require'telescope.builtin'.lsp_code_actions({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
 
 lua << EOF
 require('telescope').setup{
