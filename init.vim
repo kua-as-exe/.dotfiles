@@ -30,6 +30,7 @@ Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
 Plug 'tpope/vim-repeat' 
 Plug 'AckslD/nvim-neoclip.lua'
+Plug 'tami5/sqlite.lua'
 " Plug 'z3t0/arduvim'
 
 " Coc

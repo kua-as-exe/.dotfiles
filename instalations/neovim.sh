@@ -17,3 +17,9 @@ git clone https://github.com/sebastiencs/icons-in-terminal.git
 cd icons-in-terminal
 ./icons-in-terminal/install.sh
 cd ../
+
+
+# neoclip - sqlite
+# ~ https://github.com/AckslD/nvim-neoclip.lua
+
+sudo apt-get install sqlite3 libsqlite3-dev
