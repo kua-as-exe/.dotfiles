@@ -80,7 +80,6 @@ set completeopt=menu,menuone,noselect
     capabilities = capabilities,
     cmd =  {
       -- Required
-      -- "arduino-language-server",
       "arduino-language-server",
       "-cli-config", "~/.arduino15/arduino-cli.yaml",
       -- Optional
@@ -89,9 +88,5 @@ set completeopt=menu,menuone,noselect
     },
   })
 
-  -- nvim_lsp.arduino_language_server.setup{}
-
 EOF
 
-
-" autocmd BufEnter * lua require'completion'.on_attach()
