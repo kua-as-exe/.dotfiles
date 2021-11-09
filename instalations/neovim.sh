@@ -23,3 +23,8 @@ cd ../
 # ~ https://github.com/AckslD/nvim-neoclip.lua
 
 sudo apt-get install sqlite3 libsqlite3-dev
+
+# LSP servers
+
+sudo npm install -g vim-language-server vscode-langservers-extracted bash-language-server
+

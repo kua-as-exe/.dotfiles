@@ -66,8 +66,8 @@ set completeopt=menu,menuone,noselect
     buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
-
-  local servers = {'tsserver', 'pyright', 'clangd'}
+  
+  local servers = {'tsserver', 'pyright', 'clangd', 'vimls', 'bashls'}
   for _, lsp in ipairs(servers) do
     nvim_lsp[lsp].setup {
       on_attach = on_attach,
@@ -87,6 +87,19 @@ set completeopt=menu,menuone,noselect
       -- "-clangd", "/path/to/clangd"
     },
   })
+
+  
+  nvim_lsp.jsonls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      commands = {
+        Format = {
+          function()
+            vim.lsp.buf.range_formatting({},{0,0},{vim.fn.line("$"),0})
+          end
+        }
+      }
+  }
 
 EOF
 
