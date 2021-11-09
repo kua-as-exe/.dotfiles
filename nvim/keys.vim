@@ -65,5 +65,5 @@ nmap <A-N> <Plug>(GitGutterPrevHunk)
 " Preview Hunk
 nmap ghp <Plug>(GitGutterPreviewHunk)
 
-nnoremap <leader>Gc <cmd>Git commit .<cr>
-nnoremap <leader>Gp <cmd>Git push<cr>
+nnoremap <leader>gC <cmd>Git commit .<cr>
+nnoremap <leader>gP <cmd>Git push<cr>
