@@ -33,6 +33,7 @@ Plug 'jbgutierrez/vim-better-comments'
 Plug 'AckslD/nvim-neoclip.lua'
 Plug 'tami5/sqlite.lua'
 Plug 'metakirby5/codi.vim'
+Plug 'vimsence/vimsence'
 " Plug 'z3t0/arduvim'
 
 " Coc
