@@ -29,8 +29,10 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'wakatime/vim-wakatime'
 Plug 'dhruvasagar/vim-open-url'
 Plug 'tpope/vim-repeat' 
+Plug 'jbgutierrez/vim-better-comments' 
 Plug 'AckslD/nvim-neoclip.lua'
 Plug 'tami5/sqlite.lua'
+Plug 'metakirby5/codi.vim'
 " Plug 'z3t0/arduvim'
 
 " Coc
