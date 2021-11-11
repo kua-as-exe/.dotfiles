@@ -90,6 +90,7 @@ source ~/.dotfiles/nvim/neoclip.vim
 
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
+source ~/.dotfiles/nvim/toggle.vim
 
 " ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 "
