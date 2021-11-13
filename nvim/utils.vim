@@ -77,4 +77,6 @@ let g:colorizer_auto_color = 1
 let g:colorizer_skip_comments = 1
 
 
-
+" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
+" Git commit in insertmode
+autocmd FileType gitcommit startinsert
