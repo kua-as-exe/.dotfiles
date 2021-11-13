@@ -1,9 +1,9 @@
 " TERMINAL UTILS
 
 " start terminal with Alt+T
-nnoremap <A-t> :terminal<CR>
+nnoremap <silent> <expr> <A-t> FloatermOpened()? ":FloatermNew<CR>" : ":terminal<CR>"
 
-" Exit with ESC
+  "Exit with ESC
 "  ~ https://vi.stackexchange.com/a/6966
 " Commmand to set ESC as exit in terminal mode 
 : command! TermEscExit :tmap <esc> <c-\><c-n>

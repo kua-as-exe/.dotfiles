@@ -21,21 +21,21 @@ nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
 " Split panels
-nnoremap <A-S> :sp<cr>
-nnoremap <A-V> :vsp<cr>
+nnoremap <silent> <A-S> :sp<cr>
+nnoremap <silent> <A-V> :vsp<cr>
 
 " Start new tab
-nnoremap <A-T> :tabnew<CR>
-" Move between tabs Move between tabs
-nnoremap <A-Left> :tabprevious<CR>                                                                            
-nnoremap <A-h> :tabprevious<CR>                                                                            
-nnoremap <A-Right> :tabnext<CR>
-nnoremap <A-l> :tabnext<CR>
+nnoremap <silent> <A-T> :tabnew<CR>
+" Move between tabs Move between tabs and Floater terminals
+nnoremap <silent> <expr> <A-h> FloatermOpened() ? ":FloatermPrev<CR>" : ":tabprevious<CR>"
+nnoremap <silent> <expr> <A-Left> FloatermOpened() ? ":FloatermPrev<CR>" : ":tabprevious<CR>"
+nnoremap <silent> <expr> <A-l> FloatermOpened() ? ":FloatermNext<CR>" : ":tabnext<CR>"
+nnoremap <silent> <expr> <A-Right> FloatermOpened() ? ":FloatermNext<CR>" : ":tabnext<CR>"
 " Move tabs
-nnoremap <A-H> :tabm -1<CR>
-nnoremap <A-S-Left> :tabm -1<CR>
-nnoremap <A-L> :tabm +1<CR>
-nnoremap <A-S-Right> :tabm +1<CR>
+nnoremap <silent> <A-H> :tabm -1<CR>
+nnoremap <silent> <A-S-Left> :tabm -1<CR>
+nnoremap <silent> <A-L> :tabm +1<CR>
+nnoremap <silent> <A-S-Right> :tabm +1<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
