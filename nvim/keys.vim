@@ -67,3 +67,6 @@ nmap ghp <Plug>(GitGutterPreviewHunk)
 
 nnoremap <leader>gC <cmd>Git commit .<cr>
 nnoremap <leader>gP <cmd>Git push<cr>
+
+" M tenu
+:nnoremap <A-m> :Menu<cr>

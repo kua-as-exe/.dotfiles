@@ -38,6 +38,7 @@ Plug 'chrisbra/Colorizer'
 Plug 'z3t0/arduvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'dstein64/vim-menu'
 
 " Coc
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
