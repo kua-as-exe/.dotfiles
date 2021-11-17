@@ -37,6 +37,7 @@ Plug 'vimsence/vimsence'
 Plug 'chrisbra/Colorizer'
 Plug 'z3t0/arduvim'
 Plug 'voldikss/vim-floaterm'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " Coc
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -62,7 +63,6 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend upda
 Plug 'nvim-telescope/telescope-symbols.nvim'
 
 " LSP
-
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'

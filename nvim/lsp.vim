@@ -101,5 +101,9 @@ set completeopt=menu,menuone,noselect
       }
   }
 
+  nvim_lsp.zeta_note.setup({
+    cmd={'~/.dotfiles/bin/zeta-note'}
+  })
+
 EOF
 

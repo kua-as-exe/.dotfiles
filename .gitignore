@@ -1,3 +1,5 @@
 nodesource_setup.sh
 icons-in-terminal/
 *.deb
+
+bin/*

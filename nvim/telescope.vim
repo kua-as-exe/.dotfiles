@@ -5,7 +5,7 @@ nnoremap <leader>t <cmd>Telescope<cr>
 nnoremap <leader>c <cmd>Telescope neoclip<cr>
 inoremap <A-p> <cmd>Telescope neoclip<cr>
 nnoremap <leader>e <cmd>Telescope symbols<cr>
-nnoremap <leader>b <cmd>Telescope file_browser<cr>
+nnoremap <leader>b <cmd>Telescope file_browser hidden=true<cr>
 nnoremap <leader>gs <cmd>Telescope git_status<cr>
 nnoremap <leader>gc <cmd>Telescope git_commits<cr>
 nnoremap <leader>gb <cmd>Telescope git_branches<cr>
