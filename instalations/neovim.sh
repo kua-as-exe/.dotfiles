@@ -28,3 +28,7 @@ sudo apt-get install sqlite3 libsqlite3-dev
 
 sudo npm install -g vim-language-server vscode-langservers-extracted bash-language-server
 
+## Spell
+
+./neovim_spell.sh
+

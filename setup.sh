@@ -28,3 +28,5 @@ done
 alias n=nvim 
 alias rm=trash
 ln -f ./init.vim ~/.config/nvim/init.vim
+
+mkdir ./.local

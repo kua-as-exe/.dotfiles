@@ -3,3 +3,4 @@ icons-in-terminal/
 *.deb
 
 bin/*
+.local/*
