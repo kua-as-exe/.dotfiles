@@ -53,7 +53,8 @@ vnoremap <A-J> yp
 vnoremap <A-K> yP
 
 " Exit with Alt+Shitft+w
-nnoremap <A-W> :bd <CR>
+nnoremap <A-W> :q <CR>
+" nnoremap <A-W> :bd <CR> " WTF
 
 " ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
 " GitGlutter signs
