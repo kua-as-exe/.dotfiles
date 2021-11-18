@@ -39,6 +39,7 @@ Plug 'z3t0/arduvim'
 Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'dstein64/vim-menu'
+Plug 'easymotion/vim-easymotion'
 
 " Coc
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -91,6 +92,7 @@ source ~/.dotfiles/nvim/lsp.vim
 source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/neoclip.vim
 source ~/.dotfiles/nvim/floaterm.vim
+source ~/.dotfiles/nvim/easyMotion.vim
 
 source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/utils.vim

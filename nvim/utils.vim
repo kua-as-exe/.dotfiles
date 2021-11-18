@@ -73,10 +73,20 @@ highlight clear SignColumn
 
 " ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
 " Colorcitos uwu
-let g:colorizer_auto_color = 1
+" let g:colorizer_auto_color = 1
 let g:colorizer_skip_comments = 1
 
 
 " ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
 " Git commit in insertmode
 autocmd FileType gitcommit startinsert
+
+
+" function! OnCloseBuff()
+"   if winnr() == 1 && bufname('%') == '' && &filetype == ''
+"     echo "Hola"
+"     exe 'Startify'
+"   endif
+" endfunction
+
+" au BufDelete * call OnCloseBuff()
