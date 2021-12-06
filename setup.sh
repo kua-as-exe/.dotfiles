@@ -35,3 +35,4 @@ alias n=nvim
 alias rm=trash
 ln -f "./init.vim" "$NVIM_CONFIG_FOLDER/init.vim"
 
+sed -zi '/\. $HOME\/\.dotfiles\/startup.sh/!s/$/\n\. $HOME\/\.dotfiles\/startup.sh/' "$HOME/.bashrc"
