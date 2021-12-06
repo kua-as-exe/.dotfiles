@@ -4,7 +4,7 @@ sudo apt install clang-format clangd-9
 sudo update-alternatives --install /usr/bin/clangd clangd /usr/bin/clangd-9 100
 
 # nodejs
-curl -sL https://deb.nodesource.com/setup_14.x | sudo bash
+curl -sL https://deb.nodesource.com/setup_16.x | sudo bash
 sudo apt-get install nodejs
 
 # npm
