@@ -12,4 +12,6 @@
 Set kitty as default terminal gnome:
 ```bash
 gsettings set org.gnome.desktop.default-applications.terminal exec ~/.local/bin/kitty
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/cranki/.local/bin/kitty 50
 ```
+
