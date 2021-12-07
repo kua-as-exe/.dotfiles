@@ -6,3 +6,10 @@
 - [ ] Atajo del teclado para cambiar el idioma
 * [ ] Script para descargar el apa y todas esas weas
 - [ ] Mejorar lo de :q con :bd y esa wea del buffer y de la ventana wtf
+
+### Notas:
+
+Set kitty as default terminal gnome:
+```bash
+gsettings set org.gnome.desktop.default-applications.terminal exec ~/.local/bin/kitty
+```

@@ -24,6 +24,10 @@ set termguicolors
 set hidden
 set noshowmode
 
+" FIX NERD_Tree error when rejoining a session 
+" ~ https://github.com/preservim/nerdtree/issues/745#issuecomment-568509155
+set sessionoptions-=blank
+
 set foldmethod=syntax
 autocmd BufWinEnter * silent! :%foldopen! " ~ https://stackoverflow.com/a/23672376
 

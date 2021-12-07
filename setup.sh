@@ -7,6 +7,10 @@ NVIM_CONFIG_FOLDER="$HOME/.config/nvim/"
 [ ! -f "./bin" ] && mkdir -p "./bin"
 mkdir ./.local
 [ ! -f "$NVIM_CONFIG_FOLDER" ] && mkdir -p "$NVIM_CONFIG_FOLDER"
+[ -f "$HOME/.zshrc" ] && echo "zshrc already linked" || ( 
+  echo "linking zshrc" && 
+  ln "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc"
+)
 
 setLink (){
     file=$1
@@ -36,3 +40,5 @@ alias rm=trash
 ln -f "./init.vim" "$NVIM_CONFIG_FOLDER/init.vim"
 
 sed -zi '/\. $HOME\/\.dotfiles\/startup.sh/!s/$/\n\. $HOME\/\.dotfiles\/startup.sh/' "$HOME/.bashrc"
+sed -zi '/\. $HOME\/\.dotfiles\/startup.sh/!s/$/\n\. $HOME\/\.dotfiles\/startup.sh/' "$HOME/.zshrc"
+
