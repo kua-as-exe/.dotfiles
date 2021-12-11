@@ -5,6 +5,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# SHORTCUTS
+
+  # ~ https://unix.stackexchange.com/questions/411549/zle-key-bindings-codes-list
+
+  function toggle-right-prompt() { 
+    echo hola
+    p10k display '*/right'=hide,show; 
+  }
+  zle -N toggle-right-prompt
+  bindkey '^[1' toggle-right-prompt
+
+
+#
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 

@@ -14,4 +14,5 @@ Set kitty as default terminal gnome:
 gsettings set org.gnome.desktop.default-applications.terminal exec ~/.local/bin/kitty
 sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator /home/cranki/.local/bin/kitty 50
 ```
+From: [JPYamamoto](https://github.com/kovidgoyal/kitty/issues/1101#issuecomment-483072764)
 
