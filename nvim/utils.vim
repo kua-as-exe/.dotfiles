@@ -90,3 +90,12 @@ autocmd FileType gitcommit startinsert
 " endfunction
 
 " au BufDelete * call OnCloseBuff()
+
+
+" autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*ts,*tsx Neoformat
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+
+" autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
+

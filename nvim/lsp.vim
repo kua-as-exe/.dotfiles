@@ -107,3 +107,4 @@ set completeopt=menu,menuone,noselect
 
 EOF
 
+let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME.'/.dotfiles/nvim/snippets']

@@ -1,0 +1,25 @@
+snippet rfc "React Functional Component" b
+
+const ${1:`!v expand('%:t:r')`}Component: React.FC<$2> = ({$3}) => {
+
+	return ${4:<></>}
+	
+}
+
+export default $1Component
+
+endsnippet
+
+snippet styE "Styled component template" b
+const $1 = styled.$2`
+
+`
+
+endsnippet
+
+snippet styC "Styled custom component template" b
+const $1 = styled($2)`
+
+`
+
+endsnippet

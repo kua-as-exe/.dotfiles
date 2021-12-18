@@ -48,6 +48,12 @@ Plug 'voldikss/vim-floaterm'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'dstein64/vim-menu'
 Plug 'easymotion/vim-easymotion'
+" Plug 'sbdchd/neoformat'
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'npm install --frozen-lockfile --production',
+  \ 'branch': 'release/0.x'
+  \ }
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 
 " Coc
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -62,7 +68,9 @@ Plug 'mattn/emmet-vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'mlaursen/vim-react-snippets'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
+Plug 'romgrk/nvim-treesitter-context'
+Plug 'SmiteshP/nvim-gps'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -105,6 +113,7 @@ source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/neoclip.vim
 source ~/.dotfiles/nvim/floaterm.vim
 source ~/.dotfiles/nvim/easyMotion.vim
+source ~/.dotfiles/nvim/treesitter.vim
 
 source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/utils.vim

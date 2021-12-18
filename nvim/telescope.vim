@@ -5,25 +5,64 @@ nnoremap <leader>t <cmd>Telescope<cr>
 nnoremap <leader>c <cmd>Telescope neoclip<cr>
 inoremap <A-p> <cmd>Telescope neoclip<cr>
 nnoremap <leader>e <cmd>Telescope symbols<cr>
-nnoremap <leader>b <cmd>Telescope file_browser hidden=true<cr>
-nnoremap <leader>gs <cmd>Telescope git_status<cr>
-nnoremap <leader>gc <cmd>Telescope git_commits<cr>
-nnoremap <leader>gb <cmd>Telescope git_branches<cr>
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fc <cmd>Telescope commands<cr>
-nnoremap <leader>fg <cmd>Telescope git_files<cr>
-nnoremap <leader>: <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" TODO pasar esta wea a lua para hacerla bonita wtf
-nnoremap <leader>lr <cmd> :lua require'telescope.builtin'.lsp_references({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
-nnoremap <leader>li <cmd> :lua require'telescope.builtin'.lsp_implementations({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
-nnoremap <leader>ld <cmd> :lua require'telescope.builtin'.lsp_definitions({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
-nnoremap <leader>ldd <cmd> :lua require'telescope.builtin'.lsp_document_diagnostics({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
-nnoremap <leader>lca <cmd> :lua require'telescope.builtin'.lsp_code_actions({ layout_strategy='vertical', layout_config={ preview_cutoff=1, preview_height=25 } })<cr>
-
 lua << EOF
+
+-- ~ https://newbedev.com/lua-object-to-string-code-example
+function dump(o)
+  if type(o) == 'table' then
+    local s = '{ '
+    for k,v in pairs(o) do
+      s = s ..k..' = ' .. dump(v) .. ',  '
+    end
+    return s .. '} '
+  elseif type(o) == 'string' then
+    return "'"..o.."'"
+  else
+    return tostring(o)
+  end
+end
+
+local function set_keymap(...) vim.api.nvim_set_keymap(...) end
+local L = '<leader>'
+local cmd = ":lua require'telescope.builtin'"
+local opts = { 
+  noremap = true, 
+  silent = true 
+}
+
+function keymap(keymap, command, cmdOpts)
+  set_keymap('n', L..keymap, cmd..'.'..command..'('..dump(cmdOpts)..')<CR>', opts)
+end
+
+local telescope_opts = { 
+  layout_config={ 
+    preview_cutoff=0.4, 
+    preview_height=0.6
+  } ,
+  layout_strategy='vertical',
+}
+keymap('lr', 'lsp_references', telescope_opts)
+keymap('li', 'lsp_implementations', telescope_opts)
+keymap('ld', 'lsp_definitions', telescope_opts)
+keymap('ldd', 'lsp_document_diagnostics', telescope_opts)
+keymap('lca', 'lsp_code_actions', telescope_opts)
+
+local browser_opts = {
+  hidden = true
+}
+keymap('ff', 'find_files', browser_opts)
+keymap('b', 'file_browser', browser_opts)
+keymap('fg', 'git_files', browser_opts)
+keymap('fb', 'buffers', browser_opts)
+keymap(':', 'live_grep', browser_opts)
+
+local git_opts = {}
+keymap('gs', 'git_status', git_opts)
+keymap('gc', 'git_commits', git_opts)
+keymap('gb', 'git_branches', git_opts)
+
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -36,7 +75,7 @@ require('telescope').setup{
       '--column',
       '--smart-case'
     },
-    prompt_prefix = "  ",
+    prompt_prefix = " => ",
     selection_caret = "> ",
     entry_prefix = "  ",
     initial_mode = "insert",

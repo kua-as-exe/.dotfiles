@@ -2,7 +2,7 @@
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active':{
-      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'filename', 'modified'], ['gps'] ],
       \   'right': [  ['lineinfo'], ['percent'], [ 'gitstatus' , 'filetype', 'keymap'] ]
       \ },
       \ 'separator': { 'left': "\ue0b8", 'right': "\ue0ba"  },
@@ -23,7 +23,8 @@ let g:lightline = {
       \   'percent': 'LightlinePercent',
       \   'filetype': 'LightlineFiletype',
       \   'gitbranch': 'FugitiveHead',
-      \   'gitstatus': 'GitStatus'
+      \   'gitstatus': 'GitStatus',
+      \   'gps': 'VimGps'
       \ },
       \ 'tab_component_function': {
       \   'tabnum': 'LightlineWebDevIcons',
@@ -94,6 +95,28 @@ function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
+
+
+lua << EOF
+function _G.StatusLineGPS()
+  -- Lua
+  local gps = require("nvim-gps")
+
+  if gps.is_available() then  -- Returns boolean value indicating whether a output can be provided
+    return gps.get_location()  -- Returns a string with context information
+  else
+    return ""
+  end
+end
+EOF
+
+function! VimGps()
+  if Hidden()
+    return ''
+  endif
+  return v:lua.StatusLineGPS()
+endfunction
+
 
 let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0

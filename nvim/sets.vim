@@ -12,7 +12,7 @@ set numberwidth=1
 set nowrap
 
 set expandtab ts=2 sw=2 ai
-set scrolloff=8
+set scrolloff=0
 
 set ignorecase
 set hlsearch
