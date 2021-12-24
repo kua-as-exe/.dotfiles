@@ -67,7 +67,7 @@ Plug 'neoclide/jsonc.vim'
 Plug 'mattn/emmet-vim'
 
 Plug 'SirVer/ultisnips'
-Plug 'mlaursen/vim-react-snippets'
+" Plug 'mlaursen/vim-react-snippets'
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'SmiteshP/nvim-gps'
@@ -88,6 +88,7 @@ Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'tami5/lspsaga.nvim'
 
 Plug 'SirVer/ultisnips'
 Plug 'quangnguyen30192/cmp-nvim-ultisnips'
@@ -109,6 +110,7 @@ source ~/.dotfiles/nvim/startify.vim
 source ~/.dotfiles/nvim/twilight.vim
 source ~/.dotfiles/nvim/emmet.vim
 source ~/.dotfiles/nvim/lsp.vim
+source ~/.dotfiles/nvim/lspsaga.vim
 source ~/.dotfiles/nvim/telescope.vim
 source ~/.dotfiles/nvim/neoclip.vim
 source ~/.dotfiles/nvim/floaterm.vim
@@ -119,3 +121,4 @@ source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
 source ~/.dotfiles/nvim/toggle.vim
+

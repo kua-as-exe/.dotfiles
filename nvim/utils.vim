@@ -99,3 +99,7 @@ let g:prettier#quickfix_enabled = 0
 " autocmd TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.svelte,*.yaml,*.html PrettierAsync
 
+" Check if file has changed and update it
+" ~ https://stackoverflow.com/a/20418591
+au FocusGained,BufEnter * :silent! !
+

@@ -1,12 +1,9 @@
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>t <cmd>Telescope<cr>
-" nnoremap <leader>c <cmd>Telescope treesitter<cr>
 nnoremap <leader>c <cmd>Telescope neoclip<cr>
 inoremap <A-p> <cmd>Telescope neoclip<cr>
-nnoremap <leader>e <cmd>Telescope symbols<cr>
-nnoremap <leader>fc <cmd>Telescope commands<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 lua << EOF
 
 -- ~ https://newbedev.com/lua-object-to-string-code-example
@@ -27,10 +24,7 @@ end
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 local L = '<leader>'
 local cmd = ":lua require'telescope.builtin'"
-local opts = { 
-  noremap = true, 
-  silent = true 
-}
+local opts = { noremap = true, silent = true }
 
 function keymap(keymap, command, cmdOpts)
   set_keymap('n', L..keymap, cmd..'.'..command..'('..dump(cmdOpts)..')<CR>', opts)
@@ -46,12 +40,11 @@ local telescope_opts = {
 keymap('lr', 'lsp_references', telescope_opts)
 keymap('li', 'lsp_implementations', telescope_opts)
 keymap('ld', 'lsp_definitions', telescope_opts)
+keymap('lwd', 'lsp_workspace_diagnostics', telescope_opts)
 keymap('ldd', 'lsp_document_diagnostics', telescope_opts)
 keymap('lca', 'lsp_code_actions', telescope_opts)
 
-local browser_opts = {
-  hidden = true
-}
+local browser_opts = { hidden = true }
 keymap('ff', 'find_files', browser_opts)
 keymap('b', 'file_browser', browser_opts)
 keymap('fg', 'git_files', browser_opts)
@@ -62,6 +55,20 @@ local git_opts = {}
 keymap('gs', 'git_status', git_opts)
 keymap('gc', 'git_commits', git_opts)
 keymap('gb', 'git_branches', git_opts)
+keymap('gbc', 'git_bcommits', {
+  layout_config={ 
+    preview_cutoff=0.4, 
+    preview_height=0.6
+  } ,
+  layout_strategy='vertical',
+})
+
+local general = {}
+keymap('fe', 'symbols', general)
+keymap('fc', 'commands', general)
+keymap('T', 'treesitter', general)
+keymap('fh', 'help_tags', general)
+keymap('fm', 'marks', general)
 
 require('telescope').setup{
   defaults = {
@@ -76,7 +83,7 @@ require('telescope').setup{
       '--smart-case'
     },
     prompt_prefix = " => ",
-    selection_caret = "> ",
+    selection_caret = " |> ",
     entry_prefix = "  ",
     initial_mode = "insert",
     selection_strategy = "reset",

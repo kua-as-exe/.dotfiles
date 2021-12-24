@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Edit scripts",
+        "description": "Select to edit scripts",
+        "icon": null,
+        "script": "xdg-open ~/.config/ulauncher/scripts.json",
+        "default_arguments": [
+            "~/.config/ulauncher/scripts.json"
+        ]
+    },
+    {
+        "name": "Notion Schedule Update to Week",
+        "description": "Lo de notion",
+        "icon": null,
+        "script": "~/Projects/notion-db/updateScheduleWeek.sh",
+        "default_arguments": [  ]
+    }
+]
