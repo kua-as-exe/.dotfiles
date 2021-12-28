@@ -65,6 +65,7 @@ Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 Plug 'jparise/vim-graphql'
 Plug 'neoclide/jsonc.vim'
 Plug 'mattn/emmet-vim'
+Plug 'mbbill/undotree'
 
 Plug 'SirVer/ultisnips'
 " Plug 'mlaursen/vim-react-snippets'

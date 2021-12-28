@@ -71,3 +71,6 @@ nnoremap <leader>gP <cmd>Git push<cr>
 
 " M tenu
 :nnoremap <A-m> :Menu<cr>
+
+" Undo Tree
+nnoremap <silent><leader>u :UndotreeToggle<CR>
