@@ -1,4 +1,3 @@
-
 -- ~ https://newbedev.com/lua-object-to-string-code-example
 function Dump(o)
   if type(o) == 'table' then
@@ -30,6 +29,7 @@ local telescope_opts = {
   } ,
   layout_strategy='vertical',
 }
+
 Keymap('lr', 'lsp_references', telescope_opts)
 Keymap('li', 'lsp_implementations', telescope_opts)
 Keymap('ld', 'lsp_definitions', telescope_opts)
@@ -63,6 +63,17 @@ Keymap('T', 'treesitter', general)
 Keymap('fh', 'help_tags', general)
 Keymap('fm', 'marks', general)
 
+local neoclip = {
+  layout_config={
+    preview_cutoff=0.6,
+    preview_height=0.4
+  } ,
+  layout_strategy='vertical',
+}
+
+set_keymap('n',L..'c',":lua require('telescope').extensions.neoclip.default("..Dump( neoclip )..")<CR>", opts)
+set_keymap('n','<A-c>',":lua require('telescope').extensions.neoclip.default("..Dump( neoclip )..")<CR>", opts)
+
 require('telescope').setup{
   defaults = {
     vimgrep_arguments = {
@@ -93,7 +104,10 @@ require('telescope').setup{
     file_sorter =  require'telescope.sorters'.get_fuzzy_file,
     file_ignore_patterns = {
       ".git",
-      "node_modules"
+      "node_modules",
+      "dist",
+      "build",
+      "lib",
     },
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     winblend = 0,

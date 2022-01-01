@@ -29,13 +29,17 @@ nnoremap <silent> <A-T> :tabnew<CR>
 " Move between tabs Move between tabs and Floater terminals
 nnoremap <silent> <expr> <A-h> FloatermOpened() ? ":FloatermPrev<CR>" : ":tabprevious<CR>"
 nnoremap <silent> <expr> <A-Left> FloatermOpened() ? ":FloatermPrev<CR>" : ":tabprevious<CR>"
+nnoremap <silent> <expr> <A-a> FloatermOpened() ? ":FloatermPrev<CR>" : ":tabprevious<CR>"
 nnoremap <silent> <expr> <A-l> FloatermOpened() ? ":FloatermNext<CR>" : ":tabnext<CR>"
 nnoremap <silent> <expr> <A-Right> FloatermOpened() ? ":FloatermNext<CR>" : ":tabnext<CR>"
+nnoremap <silent> <expr> <A-d> FloatermOpened() ? ":FloatermNext<CR>" : ":tabnext<CR>"
 " Move tabs
 nnoremap <silent> <A-H> :tabm -1<CR>
 nnoremap <silent> <A-S-Left> :tabm -1<CR>
+nnoremap <silent> <A-A> :tabm -1<CR>
 nnoremap <silent> <A-L> :tabm +1<CR>
 nnoremap <silent> <A-S-Right> :tabm +1<CR>
+nnoremap <silent> <A-D> :tabm +1<CR>
 
 " Move lines
 "  ~ https://vim.fandom.com/wiki/Moving_lines_up_or_down
