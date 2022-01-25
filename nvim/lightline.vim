@@ -195,11 +195,12 @@ function _G.StatusLineGPS()
 end
 EOF
 
+" FIX: Fix VimGPS in statusline
 function! VimGps()
   if Hidden() || IsHidden('gps')
     return ''
   endif
-  return v:lua.StatusLineGPS()
+  " return v:lua.StatusgpsLineGPS()
 endfunction
 
 

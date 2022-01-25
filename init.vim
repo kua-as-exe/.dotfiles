@@ -63,6 +63,7 @@ Plug 'jparise/vim-graphql'
 Plug 'neoclide/jsonc.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mbbill/undotree'
+Plug 'JorgeArreolaS/sidebar.nvim'
 
 Plug 'SirVer/ultisnips'
 " Plug 'mlaursen/vim-react-snippets'
@@ -115,6 +116,7 @@ source ~/.dotfiles/nvim/neoclip.vim
 source ~/.dotfiles/nvim/floaterm.vim
 source ~/.dotfiles/nvim/easyMotion.vim
 source ~/.dotfiles/nvim/treesitter.vim
+source ~/.dotfiles/nvim/sidebar.lua
 
 source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/utils.vim
