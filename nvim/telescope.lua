@@ -84,7 +84,8 @@ require('telescope').setup{
       '--with-filename',
       '--line-number',
       '--column',
-      '--smart-case'
+      '--smart-case',
+      '-g', '!/package-lock.json'
     },
     prompt_prefix = " => ",
     selection_caret = " |> ",
@@ -107,7 +108,7 @@ require('telescope').setup{
       "node_modules",
       "dist",
       "build",
-      "lib",
+      -- "lib",
     },
     generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
     winblend = 0,

@@ -54,8 +54,8 @@
       ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })
     },
     sources = cmp.config.sources({
-      { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'nvim_lsp' },
+      { name = 'ultisnips' }, -- For ultisnips users.
       { name = 'buffer' },
     })
   })
