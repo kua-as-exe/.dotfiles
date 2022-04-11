@@ -72,6 +72,8 @@ Plug 'SirVer/ultisnips'
 " Plug 'maxmellon/vim-jsx-pretty'
 Plug 'romgrk/nvim-treesitter-context'
 Plug 'SmiteshP/nvim-gps'
+Plug 'simrat39/symbols-outline.nvim'
+Plug 'akinsho/toggleterm.nvim'
 
 " Telescope
 Plug 'nvim-lua/popup.nvim'
@@ -121,6 +123,8 @@ source ~/.dotfiles/nvim/floaterm.vim
 source ~/.dotfiles/nvim/easyMotion.vim
 source ~/.dotfiles/nvim/treesitter.vim
 source ~/.dotfiles/nvim/sidebar.lua
+source ~/.dotfiles/nvim/toggleterm.lua
+source ~/.dotfiles/nvim/symbols-outline.lua
 source ~/.dotfiles/nvim/git.vim
 
 source ~/.dotfiles/nvim/terminal.vim
