@@ -1,5 +1,5 @@
 require('neoclip').setup({
-  enable_persistant_history = true,
+  enable_persistent_history = true,
   content_spec_column = true,
   keys = {
     -- telescope = {

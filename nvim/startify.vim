@@ -1,8 +1,8 @@
-let g:startify_custom_header = startify#center([
-\ '',
-\ '🥐 Bienvenido, Jorge',
-\ '',
-\ ])
+" let g:startify_custom_header = startify#center([
+" \ '',
+" \ '🥐 Bienvenido, Jorge',
+" \ '',
+" \ ])
 
 let g:startify_lists = [
       \ { 'type': 'sessions',  'header': ['   Sessions']       },

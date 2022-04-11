@@ -15,7 +15,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 " THEME
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
+Plug 'glepnir/dashboard-nvim'
 Plug 'folke/twilight.nvim'
 Plug 'Yggdroot/indentLine'
 
@@ -78,6 +79,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-telescope/telescope-symbols.nvim'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " LSP
 Plug 'neovim/nvim-lsp'
@@ -107,6 +109,7 @@ source ~/.dotfiles/nvim/blamer.vim
 source ~/.dotfiles/nvim/lightline.vim
 source ~/.dotfiles/nvim/nerdtree.vim
 source ~/.dotfiles/nvim/startify.vim
+source ~/.dotfiles/nvim/dashboard.vim
 source ~/.dotfiles/nvim/twilight.vim
 source ~/.dotfiles/nvim/emmet.vim
 source ~/.dotfiles/nvim/lsp.vim

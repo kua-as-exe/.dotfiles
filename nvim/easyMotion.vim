@@ -12,6 +12,7 @@ map <Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " Move to word
+map  ; <Plug>(easymotion-bd-w)
 map  ñ <Plug>(easymotion-bd-w)
 map  <leader><leader>W <Plug>(easymotion-bd-w)
 nmap <leader><Leader>w <Plug>(easymotion-overwin-w)
