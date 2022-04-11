@@ -13,3 +13,5 @@ hi Pmenu guibg=#101020
 " hi PmenuSbar
 " hi PmenuThumb
 "
+
+:source ~/.dotfiles/nvim/nightfox.lua

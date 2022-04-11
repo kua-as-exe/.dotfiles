@@ -19,6 +19,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'glepnir/dashboard-nvim'
 Plug 'folke/twilight.nvim'
 Plug 'Yggdroot/indentLine'
+Plug 'EdenEast/nightfox.nvim' " Vim-Plug
 
 " Core Plugins
 Plug 'preservim/nerdtree'
