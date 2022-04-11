@@ -28,6 +28,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
 " Util Plugins
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
@@ -120,6 +121,7 @@ source ~/.dotfiles/nvim/floaterm.vim
 source ~/.dotfiles/nvim/easyMotion.vim
 source ~/.dotfiles/nvim/treesitter.vim
 source ~/.dotfiles/nvim/sidebar.lua
+source ~/.dotfiles/nvim/git.vim
 
 source ~/.dotfiles/nvim/terminal.vim
 source ~/.dotfiles/nvim/utils.vim

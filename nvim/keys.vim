@@ -60,19 +60,6 @@ vnoremap <A-K> yP
 nnoremap <A-W> :q <CR>
 " nnoremap <A-W> :bd <CR> " WTF
 
-" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
-" GitGlutter signs
-"
-" Jump over hunks 
-nmap <A-M> <Plug>(GitGutterNextHunk)
-nmap <A-N> <Plug>(GitGutterPrevHunk)
-
-" Preview Hunk
-nmap ghp <Plug>(GitGutterPreviewHunk)
-
-nnoremap <leader>gC <cmd>Git commit .<cr>
-nnoremap <leader>gP <cmd>Git push<cr>
-
 " M tenu
 :nnoremap <A-m> :Menu<cr>
 

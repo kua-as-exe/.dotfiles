@@ -63,15 +63,6 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 
 " ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
-" GitGlutter signs
-"
-set signcolumn=yes
-highlight GitGutterDelete ctermfg=1
-highlight GitGutterAdd    ctermfg=2
-highlight GitGutterChange ctermfg=3
-highlight clear SignColumn
-
-" ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~ ~*~
 " Colorcitos uwu
 " let g:colorizer_auto_color = 1
 let g:colorizer_skip_comments = 1

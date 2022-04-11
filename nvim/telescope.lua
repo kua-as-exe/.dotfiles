@@ -36,7 +36,7 @@ local function generate_key(length)
 
     return table_concat(random_string)
 end
--- 
+--
 
 local function set_keymap(...) vim.api.nvim_set_keymap(...) end
 local L = '<leader>'
@@ -181,7 +181,7 @@ Keymap('fh', builtin..'help_tags', general)
 Keymap('fm', builtin..'marks', general)
 
 Keymap('c', "require('telescope').extensions.neoclip.default", { vertical(60) } )
-Keymap('b', "require('telescope').extensions.file_browser.file_browser", { vertical(60), horizontal() } )
+Keymap('b', "require('telescope').extensions.file_browser.file_browser", { vertical(30), vertical(60), horizontal() } )
 
 require('telescope').setup{
   defaults = {

@@ -30,6 +30,9 @@ nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagn
 nnoremap <silent><leader>cc <cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
 
 " -- jump diagnostic
+nnoremap <silent><A-[> :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent><leader>n :Lspsaga diagnostic_jump_prev<CR>
+
+nnoremap <silent><A-]> :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent><leader>m :Lspsaga diagnostic_jump_next<CR>
 
