@@ -24,6 +24,7 @@ set termguicolors
 set hidden
 set noshowmode
 set nofoldenable
+set mmp=2000
 
 " FIX NERD_Tree error when rejoining a session 
 " ~ https://github.com/preservim/nerdtree/issues/745#issuecomment-568509155
