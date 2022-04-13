@@ -38,3 +38,25 @@ highlight clear SignColumn
 " highlight SignColumn guibg=bg
 " highlight SignColumn ctermbg=bg
 
+nmap <Leader>gm <Plug>(git-messenger)
+
+function! s:setup_git_messenger_popup() abort
+    " Your favorite configuration here
+
+    " For example, set go back/forward history to <C-o>/<C-i>
+    nmap <buffer><C-o> o
+    nmap <buffer><C-i> O
+endfunction
+autocmd FileType gitmessengerpopup call <SID>setup_git_messenger_popup()
+
+let g:git_messenger_always_into_popup = v:true
+
+" Mapping	Description
+" q	Close the popup window
+" o	older. Back to older commit at the line
+" O	Opposite to o. Forward to newer commit at the line
+" d	Toggle unified diff hunks only in current file of the commit
+" D	Toggle all unified diff hunks of the commit
+" r	Toggle word diff hunks only in current file of the commit
+" R	Toggle all word diff hunks of current commit
+" ?	Show mappings help

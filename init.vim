@@ -30,6 +30,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'APZelos/blamer.nvim'
 Plug 'lewis6991/gitsigns.nvim'
+Plug 'rhysd/git-messenger.vim'
 
 " Util Plugins
 Plug 'jiangmiao/auto-pairs' "this will auto close ( [ {
