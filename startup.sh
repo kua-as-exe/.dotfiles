@@ -5,6 +5,12 @@
 
 export PATH="$HOME/.dotfiles/bin:$PATH"
 
+# ALIASES
+
+alias g='ddgr --colors bjdxxy -n 3'
+alias gg='BROWSER=w3m ddgr --colors bjdxxy -n 6'
+alias ggg='ddgr --colors bjdxxy --np -x'
+
 # SHORTCUTS
 
 # ~ https://unix.stackexchange.com/questions/411549/zle-key-bindings-codes-list

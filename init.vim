@@ -134,3 +134,4 @@ source ~/.dotfiles/nvim/utils.vim
 source ~/.dotfiles/nvim/keys.vim
 source ~/.dotfiles/nvim/toggle.vim
 
+source ~/.dotfiles/nvim/custom.lua
