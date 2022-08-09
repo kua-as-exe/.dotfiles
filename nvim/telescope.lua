@@ -114,24 +114,31 @@ local function setupCmdWithProps(params)
   set_keymap('n',L..modifierKey..keymap,':lua '..modifierCmd, opts)
 end
 
-local function vertical(percent)
-  local temp = {
-      layout_strategy="vertical",
-  }
+local function vertical(percent, pre)
+  local temp = {}
+  if( pre ~= nil ) then
+    for k,v in pairs(pre) do
+      temp[k] = v
+    end
+  end
+  temp.layout_strategy="vertical"
   if( percent ~= nil ) then
-    temp.layout_config={
-      preview_height=percent/100,
-      preview_cutoff=1-percent/100,
-    }
+    temp.layout_config={}
+    temp.layout_config.preview_height=percent/100
+    temp.layout_config.preview_cutoff=1-percent/100
   end
 
   return temp
 end
 
-local function horizontal()
-  local temp = {
-      layout_strategy="horizontal",
-  }
+local function horizontal(pre)
+  local temp = {}
+  if( pre ~= nil ) then
+    for k,v in pairs(pre) do
+      temp[k] = v
+    end
+  end
+  temp.layout_strategy="horizontal"
   return temp
 end
 
@@ -151,11 +158,14 @@ local telescope_opts = {
   horizontal()
 }
 
+Keymap('d', builtin..'diagnostics', telescope_opts)
+
 Keymap('lr', builtin..'lsp_references', telescope_opts)
 Keymap('li', builtin..'lsp_implementations', telescope_opts)
 Keymap('ld', builtin..'lsp_definitions', telescope_opts)
-Keymap('lwd', builtin..'lsp_workspace_diagnostics', telescope_opts)
-Keymap('ldd', builtin..'lsp_document_diagnostics', telescope_opts)
+-- Keymap('lwd', builtin..'lsp_workspace_diagnostics', telescope_opts)
+-- Keymap('ldd', builtin..'lsp_document_diagnostics', telescope_opts)
+Keymap('ls', builtin..'lsp_document_symbols', telescope_opts)
 Keymap('lds', builtin..'lsp_document_symbols', telescope_opts)
 Keymap('lca', builtin..'lsp_code_actions', telescope_opts)
 Keymap('.', builtin..'lsp_code_actions', telescope_opts)
@@ -181,7 +191,20 @@ Keymap('fh', builtin..'help_tags', general)
 Keymap('fm', builtin..'marks', general)
 
 Keymap('c', "require('telescope').extensions.neoclip.default", { vertical(60) } )
-Keymap('b', "require('telescope').extensions.file_browser.file_browser", { vertical(30), vertical(60), horizontal() } )
+
+local BrowserOpts = {
+  hidden=true
+}
+Keymap('b', "require('telescope').extensions.file_browser.file_browser", {
+  vertical(30, BrowserOpts), vertical(60, BrowserOpts), horizontal(BrowserOpts)
+} )
+BrowserOpts = {
+  path="%:p:h",
+  hidden=true
+}
+Keymap('B', "require('telescope').extensions.file_browser.file_browser", {
+  vertical(30, BrowserOpts), vertical(60, BrowserOpts), horizontal(BrowserOpts)
+} )
 
 require('telescope').setup{
   defaults = {

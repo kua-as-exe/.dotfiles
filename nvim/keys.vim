@@ -20,6 +20,11 @@ nnoremap <C-Down> <C-W><C-J>
 nnoremap <C-UP> <C-W><C-K>
 nnoremap <C-Right> <C-W><C-L>
 nnoremap <C-Left> <C-W><C-H>
+
+" Save with <>
+nnoremap <A->> :w<CR>
+nnoremap <A-w> :w<CR>
+
 " Split panels
 nnoremap <silent> <A-S> :sp<cr>
 nnoremap <silent> <A-V> :vsp<cr>

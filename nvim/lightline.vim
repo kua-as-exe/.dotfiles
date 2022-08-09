@@ -143,7 +143,18 @@ function! LightlineFilename()
   " Show the up folder + filename
   " eg: pages/index.tsx
   let lastTwo = join( splitted[-2:], "/" )
-  return lastTwo
+  let name = lastTwo
+
+  let filename = expand('%:t')
+  let icon = ""
+  if filename =~ ""
+    let icon = WebDevIconsGetFileTypeSymbol(filename) 
+    if name isnot ""
+      let icon = icon . ' '
+    endif
+  endif
+
+  return join([ icon, name ], '')
 endfunction
 
 function! Hidden()
@@ -200,7 +211,7 @@ function! VimGps()
   if Hidden() || IsHidden('gps')
     return ''
   endif
-  " return v:lua.StatusgpsLineGPS()
+  return v:lua.StatusLineGPS()
 endfunction
 
 

@@ -1,10 +1,51 @@
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
 
+local types = require("cmp.types")
+local str = require("cmp.utils.str")
+local t = function(str)
+	return vim.api.nvim_replace_termcodes(str, true, true, true)
+end
+local function check_backspace()
+  local col = vim.fn.col(".") - 1
+  if col == 0 or vim.fn.getline("."):sub(col, col):match("%s") then
+    return true
+  else
+    return false
+  end
+end
 
   local lspkind = require('lspkind')
   lspkind.init({
     mode = "symbol_text",
     -- with_text = true,
     preset = 'codicons',
+    symbol_map = kind_icons,
   })
 
   local cmp = require'cmp'
@@ -15,52 +56,107 @@
    end
    return keys
   end
+  -- local t = function(str)
+  --   return vim.api.nvim_replace_termcodes(str, true, true, true)
+  -- end
 
   cmp.setup({
+    completion = {
+      keyword_length = 1,
+      completeopt = "menu,noselect"
+    },
+    view = {
+      entries = 'custom',
+    },
     snippet = {
       expand = function(args)
         vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
       end,
     },
     formatting = {
-      format = function(entry, vim_item)
-        vim_item.kind = lspkind.presets.default[vim_item.kind]
+      fields = { "kind", "abbr", "menu" },
+      format = lspkind.cmp_format({
+        mode = "text",
+        with_text = true,
+        maxwidth = 50,
+        menu = {
+          buffer = " [buffer]",
+          nvim_lsp = " [LSP]",
+          utilsnip = " [snippet]",
+          nvim_lua = "  [lua]",
+          latex_symbols = " [latex]",
+        },
         
-        -- vim_item.menu = ({
-        --   nvim_lsp = "[LSP]",
-        --   look = "[Dict]",
-        --   buffer = "[Buffer]",
-        --   utilsnip = "[utilsnip]",
-        --   nvim_lua = "[Lua]",
-        --   latex_symbols = "[Latex]",
-        -- })[entry.source.name]
-        vim_item.menu = nil
+        
 
-        -- print(getTableKeys( vim_item )) -- dup kind menu word abbr
+        -- The function below will be called before any actual modifications from lspkind
+        -- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+        before = function (entry, vim_item)
+          -- Get the full snippet (and only keep first line)
+          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
 
-        return vim_item
-      end
+          return vim_item
+        end
+      })
+      -- format = function(entry, vim_item)
+      --   -- vim_item.kind = lspkind.presets.default[vim_item.kind]
+      --   lspkind-nvim
+      --   vim_item.kind = lspkind.presets.codicons[vim_item.kind]
+         
+      --   -- vim_item.menu = ({
+      --   --   nvim_lsp = "[LSP]",
+      --   --   look = "[Dict]",
+      --   --   buffer = "[Buffer]",
+      --   --   utilsnip = "[utilsnip]",
+      --   --   nvim_lua = "[Lua]",
+      --   --   latex_symbols = "[Latex]",
+      --   -- })[entry.source.name]
+      --   vim_item.menu = nil
+
+      --   -- print(getTableKeys( vim_item )) -- dup kind menu word abbr
+
+      --   return vim_item
+      -- end
     },
     mapping = {
       ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
       ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-      ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), 
+      ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
       ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
       ['<C-e>'] = cmp.mapping({
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
       ['<CR>'] = cmp.mapping.confirm({ select = true }),
-      ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
-      ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })
+      ['<TAB>'] = cmp.mapping(function(fallback)
+        if cmp.visible() == 1 then
+          vim.fn.feedkeys(t("<C-n>"), "n")
+        elseif check_backspace() then
+          return vim.fn.feedkeys(t("<Tab>"), 'n')
+        elseif vim.api.nvim_eval([[ UltiSnips#CanExpandSnippet() ]]) == 1 then
+          return vim.fn['UltiSnips#ExpandSnippetOrJump']()
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          vim.fn.feedkeys(t("<C-f>"), 'n')
+        end
+      end, { 'i', 's' })
     },
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'ultisnips' }, -- For ultisnips users.
-      { name = 'buffer' },
-    })
+      { name = 'ultisnips', max_item_count = 3  }, -- For ultisnips users.
+      { name = 'buffer', keyword_length = 5, max_item_count = 5  },
+    }),
+    experimental = {
+      ghost_text = false,
+    },
   })
-  
+
   local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 
@@ -72,7 +168,6 @@
 
      -- Enable completion triggered by <c-x><c-o>
     buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-     
     -- Mappings.
     local opts = { noremap=true, silent=true }
 
@@ -83,15 +178,16 @@
     buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
     buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     -- buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    -- buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    -- buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    -- buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     -- buf_set_keymap('n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     -- buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
     -- buf_set_keymap('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     -- buf_set_keymap('n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     buf_set_keymap('n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
     buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+    buf_set_keymap('n', '<A-<>', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   end
   
   local servers = {'tsserver', 'pyright', 'clangd', 'vimls', 'bashls'}
@@ -115,7 +211,6 @@
     },
   })
 
-  
   nvim_lsp.jsonls.setup {
       on_attach = on_attach,
       capabilities = capabilities,
@@ -155,6 +250,9 @@
         },
       },
     },
+
+    -- nvim_lsp.tailwindcss.setup { }
+
   }
 
 

@@ -1,13 +1,27 @@
+extends typescript
+
+snippet rfcs "React Functional Component Simple" b
+const ${1:`!v expand('%:t:r')`}: React.FC<{$2}> = ({$3}) => (
+	$4
+)
+endsnippet
+
 snippet rfc "React Functional Component" b
+const ${1:`!v expand('%:t:r')`}: React.FC<{$2}> = ({$3}) => {
 
-const ${1:`!v expand('%:t:r')`}Component: React.FC<$2> = ({$3}) => {
+	return (${4})
+	
+}
+endsnippet
 
-	return ${4:<></>}
+snippet rfce "React Functional Component Export Default" b
+const ${1:`!v expand('%:t:r')`}: React.FC<{$2}> = ({$3}) => {
+
+	return (${4})
 	
 }
 
-export default $1Component
-
+export default $1
 endsnippet
 
 snippet styE "Styled component template" b
@@ -21,5 +35,25 @@ snippet styC "Styled custom component template" b
 const $1 = styled($2)`
 
 `
+endsnippet
 
+snippet useState "Use effect"
+const [ $1, $2 ] = useEffect<$3>($4)
+endsnippet
+
+snippet useEffect "Use state"
+useEffect()
+endsnippet
+
+snippet ssp "Generate getServerSideProps" b
+export const getServerSideProps: GetServerSideProps<ComponentProps<typeof $1>> 
+= async ({ $2 }) => {
+  $3
+
+  return {
+    props: {
+      $4
+    }
+  }
+}
 endsnippet

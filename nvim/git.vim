@@ -5,9 +5,10 @@
 " Jump over hunks 
 nmap <A-}> <Plug>(GitGutterNextHunk)
 nmap <A-{> <Plug>(GitGutterPrevHunk)
+nmap <A-P> <Plug>(GitGutterPreviewHunk)
 
 " Preview Hunk
-nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap gp <Plug>(GitGutterPreviewHunk)
 
 nnoremap <leader>gC <cmd>Git commit .<cr>
 nnoremap <leader>gP <cmd>Git push<cr>
@@ -39,6 +40,7 @@ highlight clear SignColumn
 " highlight SignColumn ctermbg=bg
 
 nmap <Leader>gm <Plug>(git-messenger)
+nmap <A-M> <Plug>(git-messenger)
 
 function! s:setup_git_messenger_popup() abort
     " Your favorite configuration here

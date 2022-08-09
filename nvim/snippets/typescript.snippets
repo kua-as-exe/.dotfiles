@@ -1,3 +1,38 @@
+snippet ed "Export default"
+export default $1
+endsnippet
+
+snippet imp "Import"
+import { $2 } from '$1'
+endsnippet
+
+snippet impd "Import"
+import $2 from '$1'
+endsnippet
+
 snippet clg "Console log"
 console.log($1)
+endsnippet
+
+snippet ApiEndpoint "Create an API endpoint" b
+import { endpoint, ApiMethods, Method } from "next-apikit"
+
+export const $1 = endpoint<'$2', ApiMethods<{
+	$3
+}>>({
+	key: '$2',
+})
+$4
+
+export default $1.handler
+endsnippet
+
+snippet ApiMethodType "Set the type of an API endpoint"
+$1: Method<$2, $3>,
+endsnippet
+
+snippet ApiMethodDef "Set the definition of an API endpoint"
+$1: async ({ $2 }) => {
+	$3
+},
 endsnippet

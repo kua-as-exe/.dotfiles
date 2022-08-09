@@ -10,6 +10,8 @@ export PATH="$HOME/.dotfiles/bin:$PATH"
 alias g='ddgr --colors bjdxxy -n 3'
 alias gg='BROWSER=w3m ddgr --colors bjdxxy -n 6'
 alias ggg='ddgr --colors bjdxxy --np -x'
+alias la="ls -lAph --sort=size --color=tty"
+alias lg='lazygit'
 
 # SHORTCUTS
 

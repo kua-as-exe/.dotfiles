@@ -72,7 +72,10 @@ Plug 'JorgeArreolaS/sidebar.nvim'
 Plug 'SirVer/ultisnips'
 " Plug 'mlaursen/vim-react-snippets'
 " Plug 'maxmellon/vim-jsx-pretty'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'p00f/nvim-ts-rainbow'
 Plug 'romgrk/nvim-treesitter-context'
+Plug 'windwp/nvim-ts-autotag'
 Plug 'SmiteshP/nvim-gps'
 Plug 'simrat39/symbols-outline.nvim'
 Plug 'akinsho/toggleterm.nvim'
@@ -82,7 +85,6 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-telescope/telescope-symbols.nvim'
 Plug 'nvim-telescope/telescope-file-browser.nvim'
 
