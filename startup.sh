@@ -13,6 +13,12 @@ alias ggg='ddgr --colors bjdxxy --np -x'
 alias la="ls -lAph --sort=size --color=tty"
 alias lg='lazygit'
 
+alias r='ranger'
+alias gpt='npx chatgpt-tui --model gpt-3.5-turbo-16k'
+
+alias t='tmux'
+
+
 # SHORTCUTS
 
 # ~ https://unix.stackexchange.com/questions/411549/zle-key-bindings-codes-list
