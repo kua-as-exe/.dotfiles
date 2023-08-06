@@ -14,7 +14,8 @@ alias la="ls -lAph --sort=size --color=tty"
 alias lg='lazygit'
 
 alias r='ranger'
-alias gpt='npx chatgpt-tui --model gpt-3.5-turbo-16k'
+alias lg='lazygit'
+alias chat='npx chatgpt-tui --model gpt-3.5-turbo-16k'
 
 alias t='tmux'
 
